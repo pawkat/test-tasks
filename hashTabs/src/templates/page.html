@@ -6,11 +6,27 @@ title: Index page
 {% block content %}
 
 <header class="header">
-	<a href="page1.html" class="header__link page1">link-1</a>
-	<a href="page2.html" class="header__link page2">link-2</a>
-	<a href="page3.html" class="header__link2 page3">link-3</a>
-	<a href="page4.html" class="header__link2 page4">link-4</a>
+	<a href="page1" class="header__link ">link-1</a>
+	<a href="page2" class="header__link ">link-2</a>
+	<a href="page3" class="header__link ">link-3</a>
+	<a href="page4" class="header__link ">link-4</a>
 </header>
-<div class="content"></div>
-<div class="content-2"></div>
+<div class="content">
+	<div class="block page1">block-1</div>
+	<div class="block page2">block-2</div>
+	<div class="block page3">block-3</div>
+	<div class="block page4">block-4</div>
+</div>
+<section class="header2">
+	<a href="content1" class="header__link2">link-1</a>
+	<a href="content2" class="header__link2">link-2</a>
+	<a href="content3" class="header__link2">link-3</a>
+	<a href="content4" class="header__link2">link-4</a>
+</section>
+<div class="content-2">
+	<div class="block2 content1">block-1</div>
+	<div class="block2 content2">block-2</div>
+	<div class="block2 content3">block-3</div>
+	<div class="block2 content4">block-4</div>
+</div>
 {% endblock %}
