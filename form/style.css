@@ -1,0 +1,42 @@
+.wrapper {
+    position: relative;
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    padding-top: 50px;
+}
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding-top: 10px;
+    border-top: 1px solid moccasin;
+}
+input {
+    margin-bottom: 20px;
+    padding: 5px 0 5px 10px;
+    border: 1px solid gray;
+    border-radius: 5px;
+}
+.submit {
+    width: 183px;
+    height: 29px;
+    background-color: transparent;
+    border: 1px solid gray;
+    border-radius: 5px;
+}
+.password_help {
+    padding: 5px;
+    background-color: red;
+    width: 180px;
+    display: none;
+    position: absolute;
+    left: 185px;
+    top: 145px;
+}
+

@@ -1,0 +1,113 @@
+/*Users styles*/
+.section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.section1, .nav_item:first-child {
+    background: cadetblue;
+}
+.section2, .nav_item:nth-child(2) {
+    background: cornflowerblue;
+}
+.section3, .nav_item:nth-child(3) {
+    background: salmon;
+}
+.section4, .nav_item:nth-child(4) {
+    background: goldenrod;
+}
+.section5, .nav_item:last-child {
+    background: bisque;
+}
+.section_content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 80px;
+    border: 3px solid silver;
+    border-radius: 50%;
+    font-size: 40px;
+}
+.nav {
+    background: silver;
+}
+.nav_ul{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+}
+/*transform: rotate(-15deg)*/
+.nav_item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    margin-right: 15px;
+}
+.nav li  a {
+    color: #000;
+    font-size: 25px;
+}
+.nav_item:last-child {
+    margin-right: 0;
+}
+.section {
+    height: calc(100vh - 120px);
+}
+/*Default styles of the plugin*/
+body {
+    margin: 0;
+    padding: 0;
+}
+.fullpage {
+    height: 100%;
+    position: relative;
+}
+
+/*right-nav*/
+.right-nav {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    background: silver;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    top: 50vh;
+    right: 0;
+}
+.right-nav_item {
+    width: 10px;
+    height: 10px;
+    background: steelblue;
+    border-radius: 50%;
+    margin: 10px;
+}
+.right-nav_item:hover {
+    background: aliceblue;
+}
+.right-nav_item-active {
+    background: dimgray;
+}
+/*right-nav*/
+/*nav*/
+.nav{
+    position: fixed;
+    width: 100%;
+    top: 0;
+}
+.nav_item {
+    list-style: none;
+}
+.nav_item a {
+    text-decoration: none;
+}
+.nav_item-active {
+    transform: rotate(-10deg);
+}
+/*nav*/

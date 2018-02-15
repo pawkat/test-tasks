@@ -1,0 +1,890 @@
+body
+  font-family: "Exo 2", sans-serif
+  font-size: 16px
+  font-weight: 400
+  line-height: 26px
+  color: #444444
+.wrapper
+  max-width: 1120px
+  padding: 0 2px
+  margin: 0 auto
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+
+
+.logo
+  width: 230px
+  height: 66px
+  margin-top: 60px
+
+  // COLORS
+
+.colors
+  margin-top: 70px
+  margin-bottom: 100px
+  display: flex
+  justify-content: center
+  align-items: center
+  .color
+    margin-right: 50px
+    &:last-child
+      margin-right: 0
+    p
+      font-size: 16px
+      font-weight: 400
+      line-height: 26px
+      color: #444444
+      text-align: center
+.color_square
+  width: 111px
+  height: 111px
+  box-shadow: 3px 4px 8px rgba(136, 134, 145, 0.2)
+  margin-bottom: 15px
+.color_red .color_square
+  background-color: #e4022e
+.color_green .color_square
+  background-color: #8cbe22
+.color_black .color_square
+  background-color: #444444
+.color_white .color_square
+  background-color: #f4f4f4
+
+
+  // typography
+
+.typography
+  width: 100%
+  display: flex
+  flex-direction: column
+  justify-content: flex-start
+  align-items: flex-start
+  p
+    color: #a0a0a0
+    font-size: 12px
+    font-weight: 400
+    line-height: 15px
+h1
+  color: #444444
+  font-size: 42px
+  font-weight: 700
+  line-height: 45px
+  margin-bottom: 40px
+h4
+  color: #444444
+  font-family: 'Roboto', sans-serif
+  font-size: 15px
+  font-weight: 400
+  line-height: 36px
+.font-size h4:first-child
+    position: relative
+    &:after
+      position: absolute
+      content: '28 pt'
+      display: block
+      top: 20%
+      left: 125%
+      color: #444444
+      width: 95px
+      font-family: 'Roboto', sans-serif
+      font-size: 15px
+      font-weight: 400
+      line-height: 20px
+      border-top: 1px solid #d3d7da
+      border-bottom: 1px solid #d3d7da
+h5
+  color: #444444
+  font-family: 'Roboto', sans-serif
+  font-size: 15px
+  font-weight: 400
+  line-height: 15px
+  margin-bottom: 15px
+.font-size
+  display: flex
+  justify-content: flex-start
+  align-items: flex-start
+  margin-top: 55px
+  h4
+    margin-right: 100px
+  .font-size_description
+    display: flex
+    flex-direction: column
+    padding-top: 5px
+    p
+      color: #444444
+      font-family: 'Roboto', sans-serif
+      font-size: 15px
+      font-weight: 400
+      line-height: 28px
+      max-width: 525px
+
+.marked-list
+  display: flex
+  justify-content: flex-start
+  align-items: flex-start
+  margin-top: 40px
+  margin-bottom: 40px
+  h4
+    margin-right: 60px
+  .marked-list_desctiption
+    display: flex
+    flex-direction: column
+    justify-content: flex-start
+    align-items: flex-start
+    max-width: 560px
+    ul
+      color: #444444
+      font-family: 'Roboto', sans-serif
+      font-size: 15px
+      font-weight: 400
+      line-height: 28px
+      li
+        position: relative
+        &:before
+          content: ''
+          position: absolute
+          width: 5px
+          height: 5px
+          background-color: #333333
+          border-radius: 50%
+          top: 39%
+          left: -20px
+      &:last-child
+        margin-top: 50px
+        li
+          margin-bottom: 30px
+          &:before
+            width: 10px
+            height: 10px
+            background-color: #87c91e
+            top: 8px
+
+.headings
+  display: flex
+  flex-direction: column
+  justify-content: flex-start
+  align-items: flex-start
+  width: 974px
+  p
+    color: #a0a0a0
+    font-family: 'Roboto', sans-serif
+    font-size: 12px
+    font-weight: 400
+    line-height: 15px
+  .headings_title
+    width: 100%
+    padding: 0 2px
+    border-bottom: 1px solid #d3d7da
+    margin-bottom: 60px
+    h4
+      color: #2b2b2b
+      font-size: 18px
+      font-weight: 700
+      line-height: 22px
+      &:before, &:after
+        display: none
+  div
+    display: flex
+    justify-content: flex-start
+    align-items: flex-start
+  h1
+    font-size: 42px
+    line-height: 26px
+    margin-bottom: 0
+    position: relative
+    &:first-child
+      margin-right: 200px
+      &:before
+        content: ''
+        position: absolute
+        height: 1px
+        width: 894px
+        top: 0
+        left: calc(100% + 35px)
+        background: #d3d7da
+      &:after
+        content: ''
+        position: absolute
+        height: 1px
+        width: 894px
+        top: 112%
+        left: calc(100% + 35px)
+        background: #d3d7da
+  h2
+    font-size: 36px
+    line-height: 22px
+    position: relative
+    &:first-child
+      margin-right: 203px
+      &:before
+        content: ''
+        position: absolute
+        height: 1px
+        width: 894px
+        top: -20%
+        left: calc(100% + 36px)
+        background: #d3d7da
+      &:after
+        content: ''
+        position: absolute
+        height: 1px
+        width: 894px
+        top: 112%
+        left: calc(100% + 36px)
+        background: #d3d7da
+  h3
+    font-size: 30px
+    font-weight: 700
+    line-height: 22px
+    position: relative
+    &:first-child
+      margin-right: 211px
+      &:before
+        content: ''
+        position: absolute
+        height: 1px
+        width: 894px
+        top: -25%
+        left: calc(100% + 44px)
+        background: #d3d7da
+      &:after
+        content: ''
+        position: absolute
+        height: 1px
+        width: 894px
+        top: 105%
+        left: calc(100% + 44px)
+        background: #d3d7da
+  h4
+    font-size: 24px
+    font-weight: 700
+    line-height: 20px
+    position: relative
+    font-family: "Exo 2", sans-serif
+    &:first-child
+      margin-right: 220px
+      &:before
+        content: ''
+        position: absolute
+        height: 1px
+        width: 894px
+        top: -35%
+        left: calc(100% + 49px)
+        background: #d3d7da
+      &:after
+        content: ''
+        position: absolute
+        height: 1px
+        width: 894px
+        top: 90%
+        left: calc(100% + 49px)
+        background: #d3d7da
+  h5
+    font-size: 22px
+    font-weight: 700
+    line-height: 18px
+    position: relative
+    font-family: "Exo 2", sans-serif
+    &:first-child
+      margin-right: 223px
+      &:before
+        content: ''
+        position: absolute
+        height: 1px
+        width: 894px
+        top: -65%
+        left: calc(100% + 53px)
+        background: #d3d7da
+      &:after
+        content: ''
+        position: absolute
+        height: 1px
+        width: 894px
+        top: 94%
+        left: calc(100% + 53px)
+        background: #d3d7da
+.headings_h1
+  p
+    margin: 38px 0 50px 71px
+.headings_h2
+  p
+    margin: 35px 0 55px 149px
+.headings_h3
+  p
+    margin: 33px 0 62px 231px
+.headings_h4
+  p
+    margin: 30px 0 65px 303px
+.headings_h5
+  p
+    margin: 27px 0 135px 330px
+
+// LINKS
+
+.links
+  width: 100%
+  display: flex
+  flex-direction: column
+  justify-content: flex-start
+  align-items: flex-start
+  margin-bottom: 130px
+  h1
+    margin-bottom: 45px
+  .container
+    width: 882px
+    display: flex
+    justify-content: space-between
+    align-items: center
+    .links_1, .links_2
+      max-width: 353px
+      display: flex
+      justify-content: space-between
+      align-items: center
+      flex-wrap: wrap
+      a
+        font-family: "Exo 2", sans-serif
+        font-size: 14px
+        font-weight: 500
+        line-height: 14px
+        text-decoration: none
+        margin: 0 2px
+        margin-bottom: 20px
+    .links_1
+      a:first-child
+        color: #a0a0a0
+      a:nth-child(2)
+        color: #444444
+      a:nth-child(3), a:nth-child(4), a:nth-child(5)
+        color: #e4022e
+        border-bottom: 1px solid #ed1921
+      a:last-child
+        color: #d20029
+    .links_2
+      a:first-child
+        color: #9ca5ac
+        border-bottom: 1px dashed #9ca5ac
+      a:nth-child(2)
+        color: #555a5d
+        border-bottom: 1px dashed #555a5d
+      a:nth-child(3)
+        color: #e4022e
+        border-bottom: 1px dashed #e4022e
+      a:nth-child(4)
+        color: #9ca5ac
+      a:nth-child(5)
+        color: #555a5d
+      a:last-child
+        color: #d20029
+
+
+//buttons-elements
+
+.buttons-elements
+  width: 100%
+  margin-bottom: 120px
+  .buttons-elements_content
+    display: flex
+    justify-content: center
+    align-items: center
+    margin-bottom: 45px
+  .btn
+    width: 230px
+    height: 50px
+    font-size: 16px
+    font-weight: 700
+    line-height: 26px
+    color: #ffffff
+  .buttons-1, .buttons-2
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+  .buttons-1
+    margin-right: 92px
+  .buttons-2
+    margin-right: 70px
+  .btn_red
+    box-shadow: 5px 9px 17px rgba(136, 139, 145, 0.2)
+    background-color: #e4022e
+    margin-bottom: 30px
+  .btn_darkred
+    box-shadow: 5px 9px 17px rgba(136, 139, 145, 0.2)
+    background-color: #c00025
+  .btn_grey
+    box-shadow: 5px 9px 17px rgba(136, 139, 145, 0.2)
+    border: 1px solid #565656
+    color: #333333
+    margin-bottom: 30px
+  .btn_darkgrey
+    box-shadow: 5px 9px 17px rgba(136, 139, 145, 0.2)
+    border: 1px solid #565656
+    background-color: #444444
+  .arrow-checkbox
+    display: flex
+    justify-content: center
+    align-items: center
+    .arrow-container
+      display: flex
+      flex-direction: column
+      margin-right: 36px
+      .arrow-top, .arrow-bot
+        width: 22px
+        height: 22px
+        display: flex
+        justify-content: center
+        align-items: center
+        position: relative
+        &:after
+          position: absolute
+          content: ''
+          width: 8px
+          height: 6px
+          background: url("../img/arrow-top.png")
+      .arrow-top
+        background-color: #e4022e
+        margin-bottom: 20px
+      .arrow-bot
+        background-color: #8cbe22
+        &:after
+          transform: rotate(180deg)
+  .checkbox-container
+    display: flex
+    flex-direction: column
+    margin-right: 75px
+    label
+      width: 23px
+      height: 23px
+      display: flex
+      justify-content: center
+      align-items: center
+      &:first-child
+        margin-bottom: 20px
+    .checkbox
+      display: none
+    .checkbox-custom
+      position: relative
+      width: 23px
+      height: 23px
+      border: 1px solid #e2e2e2
+      display: inline-block
+      vertical-align: middle
+
+    .checkbox:checked + .checkbox-custom::before
+      content: ""
+      display: block
+      position: absolute
+      top: 2px
+      right: 2px
+      bottom: 2px
+      left: 2px
+      background: url("../img/checkbox.png") no-repeat center
+      border-radius: 2px
+
+.radio-buttons
+  width: 229px
+  height: 130px
+  background-color: #444444
+  display: flex
+  justify-content: center
+  align-items: center
+  .arrows_1, .arrows_2
+    width: 38px
+    height: 38px
+    border: 2px solid #ffffff
+    position: relative
+    &:after
+      position: absolute
+      content: ''
+      width: 9px
+      height: 6px
+      background: url("../img/arrow-1.png")
+      top: 15px
+      left: 12px
+  .arrows_1
+    margin-bottom: 14px
+  .arrows_2
+    &:after
+      left: 13px
+      transform: rotate(180deg)
+.radio
+  margin-left: 40px
+  display: flex
+  justify-content: center
+  align-items: center
+  flex-direction: column
+  span
+    width: 10px
+    height: 10px
+    border-radius: 50%
+    background-color: #ffffff
+    margin-bottom: 30px
+    opacity: 0.4
+    &:last-child
+      margin-bottom: 0
+  .radio_active
+    opacity: 1
+
+
+
+
+
+
+
+// FORM
+
+.buttons-elements_content-bottom
+  display: flex
+  justify-content: space-between
+  align-items: flex-start
+.form
+  width: 700px
+  background-color: #f8f8f8
+  form
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    .form_name, .mandatory, .select__gap
+      width: 577px
+      height: 50px
+      background-color: #ffffff
+    .form_name
+      color: #a7a7a7
+      font-size: 15px
+      font-weight: 400
+      line-height: 26px
+      width: 577px
+      height: 50px
+      border: 1px solid #e2e2e2
+      padding-left: 20px
+      margin-bottom: 20px
+    .mandatory
+      border: 1px solid #e4022e
+      display: flex
+      justify-content: flex-start
+      align-items: center
+      padding-left: 20px
+      margin-bottom: 50px
+      p
+        color: #e4022e
+        font-size: 15px
+        font-weight: 400
+        line-height: 26px
+
+.select
+  display: inline-block
+  vertical-align: top
+  margin-bottom: 40px
+.select-wrap
+  max-width: 700px
+  width: 100%
+  margin: 20px auto
+
+.select-wrap select
+  margin: 20px
+.select__gap
+  margin: 50px 0 4px 0
+  border: 1px solid #e2e2e2
+  color: #a7a7a7
+  font-family: "Exo 2", sans-serif
+  font-size: 15px
+  font-weight: 400
+  line-height: 30px
+  padding: 10px 0 0 20px
+  cursor: pointer
+  position: relative
+
+
+.on.select__gap,
+.select__gap:hover
+  font-family: "Exo 2", sans-serif
+  font-size: 15px
+  font-weight: 400
+  line-height: 30px
+
+
+.select__list
+  width: 577px
+  background-color: #ffffff
+  border: 1px solid #e2e2e2
+  margin: 0 0
+  height: 200px
+  overflow-y: scroll
+.select__item:first-child
+  display: none
+
+.select__list.on
+  display: block
+
+
+.select__item span
+  display: block
+  padding: 8px 0 0 20px
+  cursor: pointer
+  color: #444444
+  font-family: "Exo 2", sans-serif
+  font-size: 15px
+  font-weight: 400
+  line-height: 15px
+.select__item:first-child span
+  padding-top: 20px
+.select__item:last-child span
+  padding-bottom: 15px
+
+
+.select__gap:after
+  content: ''
+  display: block
+  width: 9px
+  height: 7px
+  position: absolute
+  right: 20px
+  top: 50%
+  background: url("../img/select-arrow.png")
+  margin-top: -4px
+
+  -webkit-transition: all .27s ease-in-out
+  -o-transition: all .27s ease-in-out
+  transition: all .27s ease-in-out
+
+  -webkit-transform: rotate(0deg)
+  -ms-transform: rotate(0deg)
+  -o-transform: rotate(0deg)
+  transform: rotate(0deg)
+
+
+.on.select__gap:after
+  -webkit-transform: rotate(180deg)
+  -ms-transform: rotate(180deg)
+  -o-transform: rotate(180deg)
+  transform: rotate(180deg)
+
+
+
+\::-webkit-scrollbar-button
+  background-repeat: no-repeat
+  width: 5px
+  height: 0
+
+\::-webkit-scrollbar-track
+  background-color: #ecedee
+
+\::-webkit-scrollbar-thumb
+  background: url("../img/scroll.png") no-repeat center
+  background-color: #ecedee
+
+
+\::-webkit-resizer
+  background-repeat: no-repeat
+  width: 4px
+  height: 0
+
+
+\::-webkit-scrollbar
+  width: 17px
+
+
+.pages
+  display: flex
+  justify-content: flex-start
+  align-items: center
+  .pages_slider
+    display: flex
+    justify-content: center
+    align-items: center
+    .page
+      margin-right: 32px
+      width: 10px
+      display: flex
+      justify-content: center
+      align-items: center
+      border-bottom: 2px solid transparent
+      &:last-child
+        margin-right: 0
+    a
+      color: #8f8f8f
+      font-size: 16px
+      font-weight: 700
+      line-height: 26px
+      text-decoration: none
+  .active
+    border-bottom: 2px solid #e4022e!important
+    a
+      color: #333333
+  .pages_arrowleft, .pages_arrowright
+    width: 38px
+    height: 38px
+    border: 2px solid #444444
+    position: relative
+    &:after
+      position: absolute
+      content: ''
+      width: 7px
+      height: 8px
+      background: url("../img/pages-arrowleft.png") no-repeat center
+      top: 14px
+      left: 13px
+  .pages_arrowright
+    transform: scale(-1, 1)
+    margin-left: 42px
+  .pages_arrowleft
+    margin-right: 42px
+
+.select-2-language
+  width: 288px
+  display: flex
+  justify-content: space-between
+  align-items: flex-start
+  margin-top: 60px
+  .select__gap
+    width: 113px
+    height: 32px
+    padding: 0 0 0 19px
+    margin: 0
+    color: #444444
+    &:after
+      right: 16px
+  .select__list
+    width: 113px
+    height: 146px
+    overflow-y: auto
+    padding-top: 13px
+    margin-top: 4px
+  .select__item
+    display: flex
+    justify-content: flex-start
+    align-items: center
+    height: 27px
+    padding-left: 18px
+    span
+      padding: 0
+  .select__gap, span
+    color: #444444
+    font-size: 16px
+    font-weight: 700
+    line-height: 26px
+    &:hover
+      background-color: #e2e2e2
+    &:first-child
+      display: flex
+  .language
+    display: flex
+    align-items: center
+    justify-content: center
+    p
+      color: #8f8f8f
+      font-size: 14px
+      font-weight: 600
+      line-height: 26px
+      text-transform: uppercase
+      margin-right: 20px
+      cursor: pointer
+      &:last-child
+        margin-right: 0
+    .active
+      color: #565656
+.prompt
+  display: flex
+  justify-content: flex-start
+  align-items: center
+  margin-top: 20px
+  position: relative
+  span
+    display: flex
+    justify-content: center
+    align-items: center
+    width: 18px
+    height: 18px
+    border: 1px solid #e4022e
+    border-radius: 50%
+    margin-right: 25px
+    color: #969696
+    font-size: 14px
+    font-weight: 700
+    line-height: 26px
+    transform: scale(1, -1)
+    cursor: pointer
+    &:last-child
+      margin-right: 0
+  .prompt-hover
+    display: none
+    width: 274px
+    height: 90px
+    background-color: #ffffff
+    background: url("../img/prompt.png") no-repeat center
+    position: absolute
+    top: -32px
+    left: 27px
+    padding: 25px 0 0 31px
+    p
+      color: #444444
+      font-size: 15px
+      font-weight: 400
+      line-height: 30px
+  .block
+    display: block
+  .block-2
+    display: block
+    left: 70px
+.icons
+  width: 100%
+  display: flex
+  flex-direction: column
+  justify-content: flex-start
+  align-items: flex-start
+  margin-bottom: 80px
+  h1
+    margin-bottom: 70px
+  .icons_content
+    display: flex
+    justify-content: center
+    align-items: center
+    .big-icons
+      display: flex
+      justify-content: center
+      align-items: center
+      span
+        display: block
+        margin-right: 45px
+      span:first-child
+        width: 56px
+        height: 50px
+        background: url("../img/big-icons_1.png") no-repeat center
+      span:nth-child(2)
+        width: 72px
+        height: 53px
+        background: url("../img/big-icons_2.png") no-repeat center
+      span:nth-child(3)
+        width: 64px
+        height: 67px
+        background: url("../img/big-icons_3.png") no-repeat center
+      span:last-child
+        width: 45px
+        height: 44px
+        background: url("../img/big-icons_4.png") no-repeat center
+        margin-right: 49px
+    .small-icons
+      display: flex
+      justify-content: center
+      align-items: center
+      span
+        display: block
+        margin-right: 25px
+      span:first-child
+        width: 12px
+        height: 10px
+        background: url("../img/small-icons_1.png") no-repeat center
+      span:nth-child(2)
+        width: 10px
+        height: 10px
+        background: url("../img/small-icons_2.png") no-repeat center
+      span:nth-child(3)
+        width: 8px
+        height: 7px
+        background: url("../img/small-icons_3.png") no-repeat center
+      span:last-child
+        width: 18px
+        height: 18px
+        background: url("../img/small-icons_4.png") no-repeat center
+        margin-right: 49px
