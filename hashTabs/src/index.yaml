@@ -1,0 +1,5 @@
+ProjectTitle: tabs
+
+PageList:
+- file: page.html
+  ready: 50
