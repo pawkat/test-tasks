@@ -24,10 +24,17 @@ $(document).ready(function () {
                  $(valSvg).attr('width', style);
                  $(valSvg).attr('viewBox', viewBoxVal);
              } else if($.isNumeric(val) === false || val === '') {
-             } else if(val > 100 || val < 0) {
+             } else if(val < 0) {
                  $(handle).css('left', 0);
                  $(valSvg).attr('width', 0);
                  $(valSvg).attr('viewBox', '0 0 0 0');
+             } else if(val > 100) {
+                 var width = 100 * x;
+                 var style = width + 'px';
+                 var viewBoxVal = '0 ' + '0 ' + width + ' ' + $(bg).height();
+                 $(handle).css('left', '100%');
+                 $(valSvg).attr('width', style);
+                 $(valSvg).attr('viewBox', viewBoxVal);
              }
          })
      }
