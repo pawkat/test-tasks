@@ -14,38 +14,35 @@ sayHello();
 //     this.html(html).fadeIn('fast');
 //   }
 // });
-
-function hashTabs(link, sections, showClass, linkActiveClass) {
-
-
+function hashContent(link, showClass, linkActiveClass) {
+  if(window.location.hash !== '') {
+    var hash = window.location.hash.substr(1, window.location.hash.length);
+    var link = $('a[href=' + hash + ']');
+    link.siblings().removeClass(linkActiveClass);
+    link.addClass(linkActiveClass);
+    var section = $('.' + hash);
+    section.siblings().removeClass(showClass);
+    section.addClass(showClass);
+  }
+}
+function hashTabs(link, showClass, linkActiveClass) {
   link.on('click', function() {
-    $(link).removeClass(linkActiveClass);
+    $(this).siblings().removeClass(linkActiveClass);
     $(this).addClass(linkActiveClass);
     var index = $(this).index();
-    var section = sections[index];
-    sections.removeClass(showClass);
+    var content = ('.' + $(this).parent()[0].dataset.content);
+    var section = $(content).children()[index];
+    $(content).children().removeClass(showClass);
     $(section).addClass(showClass);
-
-
-
     window.location.hash = $(this).attr('href');
     return false;
   });
-  setInterval(function page() {
-    // var findLink = 'a' + '[href="' + window.location.hash.substr(1, window.location.hash.length) + '"]';
-    var hash = window.location.hash.substr(1, window.location.hash.length);
-    // var findLink ='a' + '[href="' + hash + '"]';
-    var link = $('a[href = hash]');
-    link.parent().children().removeClass(linkActiveClass);
-    link.addClass(linkActiveClass);
-    var sectionClass = '.' + hash;
-    var section = $(sectionClass);
-    section.parent().children().removeClass(showClass);
-    section.addClass(showClass);
-  }, 1000);
+  $(window).on('hashchange', function() {
+    hashContent(link, showClass, linkActiveClass);
+  });
+  hashContent(link, showClass, linkActiveClass);
 }
-hashTabs($('.header__link'), $('.block'), 'block_show', 'active');
-hashTabs($('.header__link2'), $('.block2'), 'block_show', 'active');
+hashTabs($('.header__link'), 'block_show', 'active');
 
 
 

@@ -116,7 +116,7 @@
   <component name="PropertiesComponent">
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../hashTabs" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
   </component>
   <component name="RunDashboard">
@@ -150,12 +150,12 @@
       <workItem from="1518700402844" duration="4323000" />
       <workItem from="1519030444579" duration="1742000" />
       <workItem from="1519032700935" duration="4938000" />
-      <workItem from="1519053062340" duration="253000" />
+      <workItem from="1519053062340" duration="329000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32131000" />
+    <option name="totallyTimeSpent" value="32207000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
