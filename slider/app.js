@@ -8,38 +8,41 @@ $(document).ready(function () {
     function hidePopup(slider) {
         $(slider).removeClass('js-show-popup');
     }
-    function createSlider(sliderDiv, firstSlide, lastSlide, prevArrowClass, nextArrowClass, thumbnailPrevClass, thumbnailNextClass) {
-        var url = $(sliderDiv)[0].dataset.url;
+    function createSlider(sliderDiv, prevArrowClass, nextArrowClass, thumbnailPrevClass, thumbnailNextClass, i) {
+        var url = $(sliderDiv)[i].dataset.url;
+        var firstSlide = $(sliderDiv)[i].dataset.firstImg;
+        var lastSlide = $(sliderDiv)[i].dataset.lastImg;
+        var slider = $(sliderDiv)[i];
         $.ajax({
             url: url,
             dataType: "json",
-            context: sliderDiv.append(loader),
+            context: slider.append(loader),
             success: function (html) {
                 var sliderClass = $(sliderDiv)[0].className;
                 var firstNumber = firstSlide - 1;
                 var lastNumber = lastSlide - 1;
                     function createAlbum(sliderDiv) {
-                        var slider = $(sliderDiv);
+                        var slider = $(sliderDiv)[i];
                         var sliderClass = $(sliderDiv)[0].className; /// все названия в зависимости от этого класса
                         var slideContainer = document.createElement('div');
                         $(slideContainer).addClass(sliderClass + '__slides');
                         var sliderNav = document.createElement('div');
                         $(sliderNav).addClass(sliderClass + '__nav');
-                        for (i = firstNumber; i <= lastNumber; i++) {
+                        for (b = firstNumber; b <= lastNumber; b++) {
                             //big images
                             var slide = document.createElement('div');
                             $(slide).addClass(sliderClass + '__slide');
                             var img = document.createElement('img');
-                            $(img).attr('src', html[i].url);
-                            $(img).attr('alt', html[i].title);
+                            $(img).attr('src', html[b].url);
+                            $(img).attr('alt', html[b].title);
                             slide.append(img);
                             slideContainer.append(slide);
                             // small images
                             var smallSlide = document.createElement('div');
                             $(smallSlide).addClass(sliderClass + '__thumbnails');
                             var imgsmall = document.createElement('img');
-                            $(imgsmall).attr('src', html[i].thumbnailUrl);
-                            $(imgsmall).attr('alt', html[i].title);
+                            $(imgsmall).attr('src', html[b].thumbnailUrl);
+                            $(imgsmall).attr('alt', html[b].title);
                             smallSlide.append(imgsmall);
                             sliderNav.append(smallSlide);
                         }
@@ -47,23 +50,23 @@ $(document).ready(function () {
                         slider.append(sliderNav);
                     }
                 createAlbum(sliderDiv);
-                var sliderContainer = ($('.' + sliderClass + '__slides')[0]);
+                var sliderContainer = ($('.' + sliderClass + '__slides')[i]);
                 $(sliderContainer).slick({
                     slidesToShow: 1,
                     slidesToScroll: 1,
                     infinite: true,
                     arrows: true,
-                    prevArrow: prevArrowClass,
-                    nextArrow: nextArrowClass
+                    prevArrow: $($(sliderDiv)[i]).children($(prevArrowClass)),
+                    nextArrow: $($(sliderDiv)[i]).children($(prevArrowClass))
                 });
-                var sliderNav = ($('.' + sliderClass + '__nav')[0]);
+                var sliderNav = ($('.' + sliderClass + '__nav')[i]);
                 $(sliderNav).slick({
                     slidesToShow: 4,
                     slidesToScroll: 1,
                     asNavFor: sliderContainer,
                     focusOnSelect: true,
-                    prevArrow: thumbnailPrevClass,
-                    nextArrow: thumbnailNextClass
+                    prevArrow: $($(sliderDiv)[i]).children($(thumbnailPrevClass)),
+                    nextArrow: $($(sliderDiv)[i]).children($(thumbnailNextClass))
                 });
                 loader.remove();
 
@@ -71,11 +74,11 @@ $(document).ready(function () {
                 var bigimg = $('.' + sliderClass + '__slide');
                 $(bigimg).on('click', function () {
                     // console.log($(this)[0]); //slide
-                    var findSlider = '.' + sliderClass;
-                    var slider = $(this).closest(findSlider); //slider
+                    // var findSlider = '.' + sliderClass;
+                    var slider = $(this).closest('.' + sliderClass); //slider
+                    // console.log(slider);
                     var arrow = $('.slick-arrow');
                     var className = (($(this)[0]).className).substr(0, ($(this)[0]).className.length - 39);
-                    console.log(className);
                     var img = $('.' + className + ' img');
                     var slickList = $(this).closest('.slick-list');
                     var slide = $(this);
@@ -106,7 +109,8 @@ $(document).ready(function () {
             }
         });
     }
-
-    createSlider($('.slider'), 1, 50, '.slider__prev-arrow', '.slider__next-arrow', '.slider__thumb-prev', '.slider__thumb-next');
-    createSlider($('.slider2'), 51, 100, '.slider2__prev-arrow', '.slider2__next-arrow', '.slider2__thumb-prev', '.slider2__thumb-next');
+    $('.slider').each(function (i, elem) {
+        createSlider($('.slider'), '.slider__prev-arrow', '.slider__next-arrow', '.slider__thumb-prev', '.slider__thumb-next', i);
+        i++;
+    });
 });

@@ -71,7 +71,7 @@ body{
     background: url("loading_small.gif") no-repeat center;
 }
 .js-show-popup {
-    position: absolute;
+    position: fixed;
     height:100vh;
     width:100%;
     top:0;

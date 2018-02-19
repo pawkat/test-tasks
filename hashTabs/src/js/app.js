@@ -18,7 +18,6 @@ sayHello();
 function hashTabs(link, sections, showClass, linkActiveClass) {
 
 
-
   link.on('click', function() {
     $(link).removeClass(linkActiveClass);
     $(this).addClass(linkActiveClass);
@@ -35,8 +34,8 @@ function hashTabs(link, sections, showClass, linkActiveClass) {
   setInterval(function page() {
     // var findLink = 'a' + '[href="' + window.location.hash.substr(1, window.location.hash.length) + '"]';
     var hash = window.location.hash.substr(1, window.location.hash.length);
-    var findLink ='a' + '[href="' + hash + '"]';
-    var link = $(findLink);
+    // var findLink ='a' + '[href="' + hash + '"]';
+    var link = $('a[href = hash]');
     link.parent().children().removeClass(linkActiveClass);
     link.addClass(linkActiveClass);
     var sectionClass = '.' + hash;
