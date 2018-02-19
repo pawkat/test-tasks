@@ -135,7 +135,7 @@
   <component name="PropertiesComponent">
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../slider" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -169,12 +169,12 @@
       <workItem from="1518193889259" duration="627000" />
       <workItem from="1518422907019" duration="7035000" />
       <workItem from="1518699969285" duration="431000" />
-      <workItem from="1519029960018" duration="397000" />
+      <workItem from="1519029960018" duration="481000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16050000" />
+    <option name="totallyTimeSpent" value="16134000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="2064" height="1128" extended-state="6" />

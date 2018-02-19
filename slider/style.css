@@ -53,6 +53,11 @@ body{
 }
 
 
+/*Скрываем кнопки для того чтобы их не было видно пока слайдер не загрузился*/
+.slider__prev-arrow, .slider__next-arrow, .slider2__prev-arrow, .slider2__next-arrow, .slider__thumb-prev, .slider__thumb-next, .slider2__thumb-prev, .slider2__thumb-next {
+    display: none;
+}
+
 .loader{
     position: absolute;
     top: 0;
