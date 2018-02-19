@@ -73,8 +73,6 @@ $(document).ready(function () {
                 // функция отображения и закрытия модального окна
                 var bigimg = $('.' + sliderClass + '__slide');
                 $(bigimg).on('click', function () {
-                    // console.log($(this)[0]); //slide
-                    // var findSlider = '.' + sliderClass;
                     var slider = $(this).closest('.' + sliderClass); //slider
                     // console.log(slider);
                     var arrow = $('.slick-arrow');
@@ -82,7 +80,6 @@ $(document).ready(function () {
                     var img = $('.' + className + ' img');
                     var slickList = $(this).closest('.slick-list');
                     var slide = $(this);
-                    // var sliderNavClass = '.' + sliderClass + '__nav';
                     var nav = slider.children('.' + sliderClass + '__nav');
                     // Добавление классов для работы popup
                     $(slickList).addClass('popup__size'); //slick-list
