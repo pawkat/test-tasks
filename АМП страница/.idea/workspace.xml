@@ -16,8 +16,8 @@
           <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/index.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="168">
-                  <caret line="382" column="59" lean-forward="false" selection-start-line="382" selection-start-column="59" selection-end-line="382" selection-end-column="59" />
+                <state relative-caret-position="1680">
+                  <caret line="404" column="2" lean-forward="false" selection-start-line="404" selection-start-column="2" selection-end-line="417" selection-end-column="20" />
                   <folding />
                 </state>
               </provider>
@@ -129,7 +129,7 @@
   <component name="PropertiesComponent">
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../range slider" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
   </component>
@@ -160,12 +160,12 @@
       <updated>1518439475424</updated>
       <workItem from="1518439476603" duration="15028000" />
       <workItem from="1518509150008" duration="5002000" />
-      <workItem from="1519114677198" duration="1064000" />
+      <workItem from="1519114677198" duration="1207000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21094000" />
+    <option name="totallyTimeSpent" value="21237000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -289,8 +289,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="382" column="59" lean-forward="false" selection-start-line="382" selection-start-column="59" selection-end-line="382" selection-end-column="59" />
+        <state relative-caret-position="1680">
+          <caret line="404" column="2" lean-forward="false" selection-start-line="404" selection-start-column="2" selection-end-line="417" selection-end-column="20" />
           <folding />
         </state>
       </provider>
