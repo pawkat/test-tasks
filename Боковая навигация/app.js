@@ -91,10 +91,9 @@ $(document).ready(function () {
         });
         // rotate активного элемента
         function rotateNav() {
-            var rightNavActiveIndex = $('.right-nav_item-active').index();
             var navItem = $('.nav_item');
+            var navActive = navItem[$('.right-nav_item-active').index()];
             navItem.removeClass('nav_item-active');
-            var navActive = navItem[rightNavActiveIndex];
             $(navActive).addClass('nav_item-active');
         }
         rotateNav();
