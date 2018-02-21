@@ -8,83 +8,61 @@ $(document).ready(function () {
     function hidePopup(slider) {
         $(slider).removeClass('js-show-popup');
     }
-    function createSlider(sliderDiv, prevArrowClass, nextArrowClass, thumbnailPrevClass, thumbnailNextClass, i) {
-        var slider = $(sliderDiv)[i];
+    function createSlider(i) {
+        var slider = $('.slider')[i];
         var url = $(slider).data('url');
-        var firstNumber = $(slider).data('firstImg') - 1;
-        var lastNumber = $(slider).data('lastImg') - 1;
-
         $.ajax({
             url: url,
             dataType: "json",
             context: slider.append(loader),
             success: function (html) {
-                var sliderClass = $(sliderDiv)[0].className;
-                    function createAlbum(sliderDiv) {
-                        var slider = $(sliderDiv)[i];
-                        var sliderClass = $(sliderDiv)[0].className; /// все названия в зависимости от этого класса
-                        var slideContainer = document.createElement('div');
-                        $(slideContainer).addClass(sliderClass + '__slides');
-                        var sliderNav = document.createElement('div');
-                        $(sliderNav).addClass(sliderClass + '__nav');
+                    function createAlbum() {
+                        var slider = $('.slider')[i];
+                        var firstNumber = $(slider).data('firstImg') - 1;
+                        var lastNumber = $(slider).data('lastImg') - 1;
+                        $(slider).append(`<div class="slider__slides"></div>`);
+                        $(slider).append(`<div class="slider__nav"></div>`);
                         for (b = firstNumber; b <= lastNumber; b++) {
                             //big images
-                            var slide = document.createElement('div');
-                            $(slide).addClass(sliderClass + '__slide');
-                            var img = document.createElement('img');
-                            $(img).attr('src', html[b].url);
-                            $(img).attr('alt', html[b].title);
-                            slide.append(img);
-                            slideContainer.append(slide);
+                            $($('.slider__slides')[i]).append(`<div class="slider__slide"><img src='${html[b].url}' alt='${html[b].title}'></div>`);
                             // small images
-                            var smallSlide = document.createElement('div');
-                            $(smallSlide).addClass(sliderClass + '__thumbnails');
-                            var imgsmall = document.createElement('img');
-                            $(imgsmall).attr('src', html[b].thumbnailUrl);
-                            $(imgsmall).attr('alt', html[b].title);
-                            smallSlide.append(imgsmall);
-                            sliderNav.append(smallSlide);
+                            $($('.slider__nav')[i]).append(`<div class="slider__thumbnail"><img src='${html[b].thumbnailUrl}' alt='${html[b].title}'></div>`);
                         }
-                        slider.append(slideContainer);
-                        slider.append(sliderNav);
                     }
-                createAlbum(sliderDiv, i);
-                var sliderContainer = ($('.' + sliderClass + '__slides')[i]);
+                createAlbum();
+                var sliderContainer = $('.slider__slides')[i];
                 $(sliderContainer).slick({
                     slidesToShow: 1,
                     slidesToScroll: 1,
                     infinite: true,
                     arrows: true,
-                    prevArrow: $($(sliderDiv)[i]).children($(prevArrowClass)),
-                    nextArrow: $($(sliderDiv)[i]).children($(prevArrowClass))
+                    prevArrow: $($('.slider')[i]).children($('.slider__prev-arrow')),
+                    nextArrow: $($('.slider')[i]).children($('.slider__next-arrow'))
                 });
-                var sliderNav = ($('.' + sliderClass + '__nav')[i]);
+                var sliderNav = $('.slider__nav')[i];
                 $(sliderNav).slick({
                     slidesToShow: 4,
                     slidesToScroll: 1,
                     asNavFor: sliderContainer,
                     focusOnSelect: true,
-                    prevArrow: $($(sliderDiv)[i]).children($(thumbnailPrevClass)),
-                    nextArrow: $($(sliderDiv)[i]).children($(thumbnailNextClass))
+                    prevArrow: $($('.slider')[i]).children($('.slider__thumb-prev')),
+                    nextArrow: $($('.slider')[i]).children($('.slider__thumb-next'))
                 });
 
                 loader.remove();
 
                 // функция отображения и закрытия модального окна
-                var bigimg = $('.' + sliderClass + '__slide');
+                var bigimg = $('.slider__slide');
                 $(bigimg).on('click', function () {
-                    var slider = $(this).closest('.' + sliderClass); //slider
+                    var slider = $(this).closest($('.slider'));
                     var arrow = $('.slick-arrow');
-                    var className = (($(this)[0]).className).substr(0, ($(this)[0]).className.length - 39);
-                    var img = $('.' + className + ' img');
+                    var img = $('.slider__slide img');
                     var slickList = $(this).closest('.slick-list');
-                    var slide = $(this);
-                    var nav = slider.children('.' + sliderClass + '__nav');
+                    var nav = slider.children('.slider__nav');
                     // Добавление классов для работы popup
                     $(slickList).add($(img)).addClass('popup__size');
-                    $(slide).addClass('popup__size_im');
-                    $(prevArrowClass).add($(nextArrowClass)).addClass('popup__arrow');
-                    $(nav).add($(thumbnailPrevClass)).add($(thumbnailNextClass)).addClass('hide');
+                    $('.slider__prev-arrow').add($('.slider__next-arrow')).addClass('popup__arrow');
+                    $(nav).add($('.slider__thumb-prev')).add($('.slider__thumb-next')).addClass('hide');
 
                     showPopup(slider);
 
@@ -102,7 +80,7 @@ $(document).ready(function () {
         });
     }
     $('.slider').each(function (i, elem) {
-        createSlider($('.slider'), '.slider__prev-arrow', '.slider__next-arrow', '.slider__thumb-prev', '.slider__thumb-next', i);
+        createSlider(i);
         i++;
     });
 });
