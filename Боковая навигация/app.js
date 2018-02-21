@@ -13,39 +13,31 @@ $(document).ready(function () {
     var nav = $('.nav');
     var scrollTime = 1000; //ms
     function createRightNav(amountOfElements) {
-        var div = document.createElement('div');
-        $(div).addClass('right-nav');
+        fullpage.append("<div class='right-nav'></div>");
         for(i = 0; i < amountOfElements; i++){
-            var navItem = document.createElement('span');
-            $(navItem).addClass('right-nav_item');
-            $(div).append(navItem);
+            $('.right-nav').append("<span class='right-nav_item'></span>");
         }
-        fullpage.append(div);
+
     }
     createRightNav(amountOfElements);
     // задаём отступы, чтобы первую секцию было видно полностью
     function fullpagePadding() {
-        var padding = nav.outerHeight(true);
-        fullpage.css('padding-top', padding)
+        fullpage.css('padding-top', nav.outerHeight(true))
     }
     fullpagePadding();
     //Позиционирование rightNav
     function rightNavPosition() {
         var rightNav = $('.right-nav');
         var rightNavHeight = rightNav.outerHeight(true);
-        var topPos = 'calc(50vh - ' + rightNavHeight + 'px)';
-        rightNav.css('top', topPos)
+        rightNav.css('top', 'calc(50vh - ' + rightNavHeight + 'px)')
     }
     rightNavPosition();
     // Функция перехода к определенной секции
     function gotoSlide(sectionNumber) {
         var section = $('.section');
-        var SectionNum = sectionNumber;
-        var sectionIndex = SectionNum - 1;
-        var scrollToSection = section[sectionIndex];
+        var scrollToSection = section[sectionNumber - 1];
         var nav = $('.nav');
-        var navHeight = nav.outerHeight(true);
-        var scrollTo = $(scrollToSection).position().top - navHeight;
+        var scrollTo = $(scrollToSection).position().top - nav.outerHeight(true);
         // Функция выполняется перед тем, как начался скролл
         function beforeScroll() {
             console.log('Начался скролл..');
@@ -85,17 +77,12 @@ $(document).ready(function () {
         var section = $('.section');
         section.each(function () {
             var nav = $('.nav');
-            var navHeight = nav.outerHeight(true);
-            var scrollTo = $(this).position().top - navHeight;
-            var index = $(this).index() - 1;
-            var rightNavItem = $('.right-nav_item')[index];
-            var index2 = $(this).index();
-            var sectionNext = section[index2];
-            var nextSectionTopPos = $(sectionNext).outerHeight(true);
-            var maxTop = scrollTo + nextSectionTopPos - 1;
-            var indexLast = section.length - 1;
-            var sectionLast = $(section[indexLast]);
-            var lastPos = sectionLast.position().top - navHeight;
+            var scrollTo = $(this).position().top - nav.outerHeight(true);
+            var rightNavItem = $('.right-nav_item')[$(this).index() - 1];
+            var sectionNext = section[$(this).index()];
+            var maxTop = scrollTo + $(sectionNext).outerHeight(true) - 1;
+            var sectionLast = $(section[section.length - 1]);
+            var lastPos = sectionLast.position().top - nav.outerHeight(true);
             if (window.pageYOffset >= scrollTo & window.pageYOffset <= maxTop) {
                 $(rightNavItem).addClass('right-nav_item-active');
             } else if (sectionNext === undefined & window.pageYOffset <= scrollTo & window.pageYOffset >= lastPos) {
