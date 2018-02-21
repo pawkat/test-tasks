@@ -30,10 +30,12 @@ function hashTabs(link, showClass, linkActiveClass) {
     $(this).siblings().removeClass(linkActiveClass);
     $(this).addClass(linkActiveClass);
     var index = $(this).index();
-    var content = ('.' + $(this).parent()[0].dataset.content);
-    var section = $(content).children()[index];
-    $(content).children().removeClass(showClass);
-    $(section).addClass(showClass);
+    // var content = ('.' + $($(this).parent()[0]).data('content'));
+    var dataContent = $($(this).parent()[0]).data('content');
+    var content = $('[data-tabs=' + dataContent + ']');
+    var section = $(content.children()[index]);
+    content.children().removeClass(showClass);
+    section.addClass(showClass);
     window.location.hash = $(this).attr('href');
     return false;
   });
