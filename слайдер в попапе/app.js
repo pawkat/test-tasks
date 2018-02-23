@@ -1,6 +1,5 @@
 $(document).ready(function () {
     alert('click on tab');
-    var d = document;
     var slider = $('.slider');
     function createSlide(slideNumber, src, title, date) {
         slider.append(`<div class="slide ${slideNumber}"><img class="slideImg" src='${src}'><h2 class="title">${title}</h2><p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus consectetur iusto molestias neque! Debitis, dolore.</p><p class="date">${date}</p><button class="btn">More</button></div>`);
@@ -30,6 +29,7 @@ $(document).ready(function () {
             if($('.tab1').hasClass('active')) {
                 modalSlider($(this));
                 arrowsClick();
+
             } else if ($('.tab2').hasClass('active')) {
                 modalSlider2($(this));
                 arrowsClick();
@@ -89,6 +89,7 @@ $(document).ready(function () {
             }
             counterBlockContent();
         });
+        counterBlockContent();
     }
     function createModalSlide(slideNumber, src, title, text1, text2, text3, text4, date) {
         $('.modalSlide-container').append(`<div class="modalSlide ${slideNumber}"><div class="modalSlideContent"><h2 class="title">${title}</h2><p class="description">${text1}</p><p class="description">${text2}</p><p class="description">${text3}</p><p class="description">${text4}</p><p class="date">${date}</p></div><img class="modalSlideImg" src="${src}"></div>`);
@@ -103,21 +104,22 @@ $(document).ready(function () {
             $(".modal").fadeOut(800);	// Медленно убираем всплывающее окно
             $(".modal").remove(); // Удаляем разметку всплывающего окна
         });
-        $('.modalSlide-wrapper').append(`<div class="modalSlide-container"><div class="counter"></div></div><div class="modal-arrows"><div class='arrow arrow-left'><i class='fa fa-arrow-circle-left' aria-hidden='true'></i></div><div class='arrow arrow-right'><i class='fa fa-arrow-circle-right' aria-hidden='true'></i></div></div>`);
+        $('.modalSlide-wrapper').append(`<div class="counter"></div><div class="modalSlide-container"></div><div class="modal-arrows"><div class='arrow arrow-left'><i class='fa fa-arrow-circle-left' aria-hidden='true'></i></div><div class='arrow arrow-right'><i class='fa fa-arrow-circle-right' aria-hidden='true'></i></div></div>`);
         createModalSlide('modal-slide1', 'https://cdn3.iconfinder.com/data/icons/black-easy/512/538642-user_512x512.png', 'modal Tab1 Title 1', 'text1', 'text2', 'text3', 'text4', 'Oct 24');
         createModalSlide('modal-slide2', 'https://drivenlocal.com/wp-content/themes/newdl/images/icon-user-default.png', 'modal Tab1 Title 2', 'text1', 'text2', 'text3', 'text4', 'Oct 25');
         createModalSlide('modal-slide3', 'https://cdn3.iconfinder.com/data/icons/toolbar-people/512/user_man_male_profile_account_person_people-512.png', 'modal Tab1 Title 3', 'text1', 'text2', 'text3', 'text4', 'Oct 26');
         createModalSlide('modal-slide4', 'http://rhfms.nic.in/netiay/fto_img/loginimg.png', 'modal Tab1 Title 4', 'text1', 'text2', 'text3', 'text4', 'Oct 27');
-        if(parentSlide === '.modal-slide1') {
+        counterBlockContent();
+        if(parentSlide === '.slide1') {
             $('.modalSlide-container').attr('style', 'left:0px')
         }
-        if(parentSlide === '.modal-slide2') {
+        if(parentSlide === '.slide2') {
             $('.modalSlide-container').attr('style', 'left:-700px')
         }
-        if(parentSlide === '.modal-slide3') {
+        if(parentSlide === '.slide3') {
             $('.modalSlide-container').attr('style', 'left:-1400px')
         }
-        if(parentSlide === '.modal-slide4') {
+        if(parentSlide === '.slide4') {
             $('.modalSlide-container').attr('style', 'left:-2100px')
         }
 
@@ -133,22 +135,22 @@ $(document).ready(function () {
             $(".modal").fadeOut(800);	// Медленно убираем всплывающее окно
             $(".modal").remove(); // Удаляем разметку всплывающего окна
         });
-        $('.modalSlide-wrapper').append(`<div class="modalSlide-container"><div class="counter"></div></div><div class="modal-arrows"><div class='arrow arrow-left'><i class='fa fa-arrow-circle-left' aria-hidden='true'></i></div><div class='arrow arrow-right'><i class='fa fa-arrow-circle-right' aria-hidden='true'></i></div></div>`);
+        $('.modalSlide-wrapper').append(`<div class="counter"></div><div class="modalSlide-container"></div><div class="modal-arrows"><div class='arrow arrow-left'><i class='fa fa-arrow-circle-left' aria-hidden='true'></i></div><div class='arrow arrow-right'><i class='fa fa-arrow-circle-right' aria-hidden='true'></i></div></div>`);
         createModalSlide('modal-slide1', 'https://cdn3.iconfinder.com/data/icons/black-easy/512/538642-user_512x512.png', 'modal Tab2 Title 1', 'text1', 'text2', 'text3', 'text4', 'Oct 24');
         createModalSlide('modal-slide2', 'https://drivenlocal.com/wp-content/themes/newdl/images/icon-user-default.png', 'modal Tab2 Title 2', 'text1', 'text2', 'text3', 'text4', 'Oct 25');
         createModalSlide('modal-slide3', 'https://cdn3.iconfinder.com/data/icons/toolbar-people/512/user_man_male_profile_account_person_people-512.png', 'modal Tab2 Title 3', 'text1', 'text2', 'text3', 'text4', 'Oct 26');
         createModalSlide('modal-slide4', 'http://rhfms.nic.in/netiay/fto_img/loginimg.png', 'modal Tab2 Title 4', 'text1', 'text2', 'text3', 'text4', 'Oct 27');
 
-        if(parentSlide === '.modal-slide1') {
+        if(parentSlide === '.slide1') {
             $('.modalSlide-container').attr('style', 'left:0px')
         }
-        if(parentSlide === '.modal-slide2') {
+        if(parentSlide === '.slide2') {
             $('.modalSlide-container').attr('style', 'left:-700px')
         }
-        if(parentSlide === '.modal-slide3') {
+        if(parentSlide === '.slide3') {
             $('.modalSlide-container').attr('style', 'left:-1400px')
         }
-        if(parentSlide === '.modal-slide4') {
+        if(parentSlide === '.slide4') {
             $('.modalSlide-container').attr('style', 'left:-2100px')
         }
 
