@@ -168,10 +168,10 @@ h2 {
     top: 40%;
 }
 .modal-arrows .arrow-left {
-    left: 32.5%;
+    left: 1%;
 }
 .modal-arrows .arrow-right {
-    left: 66.5%;
+    left: 97%;
 }
 .counter {
     display: flex;
@@ -180,8 +180,9 @@ h2 {
     color: #000000;
     width: 40px;
     height: 20px;
-    position: absolute;
-    left: calc(100% - 50px);
+    position: fixed;
+    left: 66%;
     top: calc(100% - 25px);
     background: cyan;
+    z-index: 100;
 }
