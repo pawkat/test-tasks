@@ -26,22 +26,22 @@ $( document ).ready( function() {
   selectSettings();
   // Добавляем placeholder
 
-  function addPlaceholder() {
-    var newOption = document.createElement('option');
-    $(newOption).html('Город*');
-    $(newOption).attr('value', 'Не выбрано');
-    $(newOption).attr('hidden', 'hidden');
-    $(select).append(newOption);
-  }
-  addPlaceholder();
+  // function addPlaceholder() {
+  //   var newOption = document.createElement('option');
+  //   $(newOption).html('Город*');
+  //   $(newOption).attr('value', 'Не выбрано');
+  //   $(newOption).attr('hidden', 'hidden');
+  //   $(select).append(newOption);
+  // }
+  // addPlaceholder();
 
   // Добавляем option
 
   function addOption(html_val, el_val) {
-    var newOption = document.createElement('option');
-    $(newOption).html(html_val);
-    $(newOption).attr('value', el_val);
-    $(select).append(newOption);
+    // var newOption = document.createElement('option');
+    // $(newOption).html(html_val);
+    // $(newOption).attr('value', el_val);
+    $(select).append(`<option value="${el_val}">${html_val}</option>`);
   }
   addOption('Киев', 'Киев');
   addOption('Львов', 'Львов');
@@ -103,7 +103,6 @@ $( document ).ready( function() {
       if (!$(this).hasClass('on')) {
         $(this).addClass('on');
         selectList.slideDown(dur);
-
         selectItem.on('click', function() {
           // var chooseItem = $(this).data('value');
           //
@@ -112,7 +111,6 @@ $( document ).ready( function() {
           $($('.select').children()).removeAttr('selected');
           $($('.select').children()[chooseItemIndex]).attr('selected', 'selected');
           selectGap.text($(this).find('span').text());
-
           selectList.slideUp(dur);
           selectGap.removeClass('on');
         });
