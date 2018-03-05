@@ -306,18 +306,13 @@ $( document ).ready( function() {
     });
   });
   // PROMPT
-  $('.prompt_1').on('mouseover', function() {
-    $('.prompt-hover').addClass('block');
+  $('.prompt').on('mouseover', function() {
+    $(this).next().addClass('block');
   });
-  $('.prompt_1').on('mouseout', function() {
-    $('.prompt-hover').removeClass('block');
+  $('.prompt').on('mouseout', function() {
+    $(this).next().removeClass('block');
   });
-  $('.prompt_2').on('mouseover', function() {
-    $('.prompt-hover').addClass('block-2');
-  });
-  $('.prompt_2').on('mouseout', function() {
-    $('.prompt-hover').removeClass('block-2');
-  });
+
 });
 
 
