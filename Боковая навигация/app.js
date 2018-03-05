@@ -1,103 +1,105 @@
-
-
 $(document).ready(function () {
-    console.log('change value of \'var scrollTime\' to change time of scroll');
-    console.log('use function gotoSlide(section number) for scrolling to section that you need');
-    console.log('You can cancel rotate .nav elements - delete rotateNav function');
-    console.log('You can change style of right nav use class right-nav_item and right-nav_item-active');
-    console.log('Function that executed before scrolling - beforeScroll');
-    console.log('Function that executed after scrolling - afterScroll');
-    var fullpage = $('.fullpage');
-    var section = $('.section');
-    var amountOfElements = section.length;
-    var nav = $('.nav');
-    var scrollTime = 1000; //ms
-    function createRightNav(amountOfElements) {
-        fullpage.append("<div class='right-nav'></div>");
-        for(i = 0; i < amountOfElements; i++){
-            $('.right-nav').append("<span class='right-nav_item'></span>");
-        }
+    class Navigation{
+        constructor (config){
+        this.elem = $(config);
+        this.sections = this.elem.find('.section');
+        this.nav = this.elem.find(`.${Navigation.classes.headerNav}`);
+        this.time = 1000;
+        this.init();
+    }
+    init(){
+            this._createWrapper();
+            this._createItem();
+            this._fullpagePadding();
+            this._rightNavPosition();
+            this._rightNavPosition();
+            this._scrollCoordinates();
+            this._scroll();
+    }
 
+    _createWrapper() {
+        this.elem.append(`<div class="${Navigation.classes.wrapper}"></div>`)
     }
-    createRightNav(amountOfElements);
-    // задаём отступы, чтобы первую секцию было видно полностью
-    function fullpagePadding() {
-        fullpage.css('padding-top', nav.outerHeight(true))
+    get _wrapper(){
+        return $(`.${Navigation.classes.wrapper}`);
     }
-    fullpagePadding();
-    //Позиционирование rightNav
-    function rightNavPosition() {
-        var rightNav = $('.right-nav');
-        var rightNavHeight = rightNav.outerHeight(true);
-        rightNav.css('top', 'calc(50vh - ' + rightNavHeight + 'px)')
+    _createItem(){
+        var self = this;
+        this.sections.each(function () {
+            $(self._wrapper).append(`<span class='${Navigation.classes.rightNavItem}'></span>`);
+        })
     }
-    rightNavPosition();
-    // Функция перехода к определенной секции
-    function gotoSlide(sectionNumber) {
-        var section = $('.section');
-        var scrollToSection = section[sectionNumber - 1];
-        var nav = $('.nav');
-        var scrollTo = $(scrollToSection).position().top - nav.outerHeight(true);
-        // Функция выполняется перед тем, как начался скролл
-        function beforeScroll() {
-            console.log('Начался скролл..');
-        }
-        // Функция скролла
-        function scroll() {
-            $('html, body').animate({scrollTop: scrollTo},scrollTime);
-            return false;
-        }
-        // Функция выполняется после окончания скролла
-        setTimeout(function afterScroll() {
-            console.log('Вы достигли желаемой секции');
-        }, scrollTime);
-        beforeScroll();
-        scroll();
+    _fullpagePadding(){
+        this.elem.css('padding-top', $(this.nav).height());
     }
-    // Задаем функцию перехода к нужной секции при клике на <li> в .nav и на <a> в right-nav
-    function scrollCoordinates() {
-        section.each(function () {
+    _rightNavPosition(){
+        this._wrapper.css('top', 'calc(50vh - ' + this._wrapper.height() / 2 + 'px)')
+    }
+    _scrollCoordinates(){
+        var self = this;
+        this.sections.each(function () {
             var index = $(this).index() - 1;
             var sectionNumber = $(this).index();
-            var navItem = $('.nav_item')[index];
-            var rightNavItem = $('.right-nav_item')[index];
+            var navItem = $(`.${Navigation.classes.headerNavItem}`)[index];
+            var rightNavItem = $(`.${Navigation.classes.rightNavItem}`)[index];
             $(navItem).on('click', function () {
-                gotoSlide(sectionNumber)
+                self._goToSlide(sectionNumber)
             });
-
             $(rightNavItem).on('click', function () {
-                gotoSlide(sectionNumber)
+                self._goToSlide(sectionNumber)
             });
         })
     }
-    scrollCoordinates();
-    // Добавление другого цвета bg активному на данный момент элементу в right-nav
-    function scrollFunc() {
-        $('.right-nav_item').removeClass('right-nav_item-active');
-        var section = $('.section');
-        section.each(function () {
-            var nav = $('.nav');
-            var scrollTo = $(this).position().top - nav.outerHeight(true);
-            var rightNavItem = $('.right-nav_item')[$(this).index() - 1];
-            var sectionNext = section[$(this).index()];
+    _goToSlide(sectionNumber){
+        var time = this.time;
+        var scrollToSection = this.sections[sectionNumber - 1];
+        var scrollTo = $(scrollToSection).position().top - $(`.${Navigation.classes.headerNav}`).outerHeight(true);
+
+        function beforeScroll() {
+            console.log('Начался скролл..');
+        }
+        beforeScroll();
+        $.when($('html, body').animate({scrollTop: scrollTo}, time)).then(function afterScroll() {
+            console.log('Вы достигли желаемой секции');
+        });
+
+    }
+    _scrollFunc(){
+        var sections = $(`.${Navigation.classes.sections}`);
+        $(`.${Navigation.classes.rightNavItem}`).removeClass(`${Navigation.classes.rightNavActive}`);
+        $(sections).each(function () {
+            var nav = $(`.${Navigation.classes.headerNav}`);
+            var scrollTo = $(this).position().top - $(`.${Navigation.classes.headerNav}`).outerHeight(true);
+            var rightNavItem = $(`.${Navigation.classes.rightNavItem}`)[$(this).index() - 1];
+            var sectionNext = sections[$(this).index()];
             var maxTop = scrollTo + $(sectionNext).outerHeight(true) - 1;
-            var sectionLast = $(section[section.length - 1]);
+            var sectionLast = $(sections[sections.length - 1]);
             var lastPos = sectionLast.position().top - nav.outerHeight(true);
             if (window.pageYOffset >= scrollTo & window.pageYOffset <= maxTop) {
-                $(rightNavItem).addClass('right-nav_item-active');
+                $(rightNavItem).addClass(`${Navigation.classes.rightNavActive}`);
             } else if (sectionNext === undefined & window.pageYOffset <= scrollTo & window.pageYOffset >= lastPos) {
-                $(rightNavItem).addClass('right-nav_item-active');
+                $(rightNavItem).addClass(`${Navigation.classes.rightNavActive}`);
             }
         });
-        // rotate активного элемента
-        function rotateNav() {
-            var navItem = $('.nav_item');
-            var navActive = navItem[$('.right-nav_item-active').index()];
-            navItem.removeClass('nav_item-active');
-            $(navActive).addClass('nav_item-active');
+        function rotateNav(){
+            var navItem = $(`.${Navigation.classes.headerNavItem}`);
+            var navActive = navItem[$(`.${Navigation.classes.rightNavActive}`).index()];
+            navItem.removeClass('nav__item_active');
+            $(navActive).addClass('nav__item_active');
         }
         rotateNav();
     }
-    $(window).on('scroll', scrollFunc);
-
+    _scroll(){
+        $(window).on('scroll', this._scrollFunc);
+    }
+    }
+    Navigation.classes = {
+        wrapper: 'rightNav',
+        rightNavItem: 'rightNav__item',
+        headerNavItem: 'nav__item',
+        rightNavActive: 'rightNav__item_active',
+        headerNav: 'nav',
+        sections: 'section'
+    };
+    new Navigation($('.fullpage'));
 });
