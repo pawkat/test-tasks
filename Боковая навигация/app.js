@@ -1,24 +1,30 @@
 $(document).ready(function () {
+    console.log('use this syntax for using change slide function "nav._goToSlide(5)"');
     class Navigation{
         constructor (config){
-        this.elem = $(config);
+        this.config = config;
+        this.elem = config.wrapper;
         this.sections = this.elem.find('.section');
         this.nav = this.elem.find(`.${Navigation.classes.headerNav}`);
-        this.time = 1000;
+        this.time = config.scrollTime;
+        this.isRightNav = config.rightNav;
+        this.isTopNav = config.topNav;
         this.init();
     }
     init(){
-            this._createWrapper();
-            this._createItem();
-            this._fullpagePadding();
-            this._rightNavPosition();
-            this._rightNavPosition();
+            if(this.isRightNav === true){
+                this._createWrapper();
+                this._createItem();
+                this._rightNavPosition();
+            }
+            if(this.isTopNav === true){
+                this._fullpagePadding();
+            }
             this._scrollCoordinates();
             this._scroll();
     }
-
     _createWrapper() {
-        this.elem.append(`<div class="${Navigation.classes.wrapper}"></div>`)
+        this.elem.append(`<div class="${Navigation.classes.wrapper}"></div>`);
     }
     get _wrapper(){
         return $(`.${Navigation.classes.wrapper}`);
@@ -54,15 +60,17 @@ $(document).ready(function () {
         var time = this.time;
         var scrollToSection = this.sections[sectionNumber - 1];
         var scrollTo = $(scrollToSection).position().top - $(`.${Navigation.classes.headerNav}`).outerHeight(true);
-
-        function beforeScroll() {
-            console.log('Начался скролл..');
+        // console.log(this.config.beforeScroll);
+        var beforeScrollFunc = this.config.beforeScroll;
+        var afterScrollFunc = this.config.afterScroll;
+        function scroll( before, after) {
+            before(function () {
+                $('html, body').animate({scrollTop: scrollTo}, time, function () {
+                    after();
+                });
+            });
         }
-        beforeScroll();
-        $.when($('html, body').animate({scrollTop: scrollTo}, time)).then(function afterScroll() {
-            console.log('Вы достигли желаемой секции');
-        });
-
+        scroll(beforeScrollFunc, afterScrollFunc);
     }
     _scrollFunc(){
         var sections = $(`.${Navigation.classes.sections}`);
@@ -101,5 +109,23 @@ $(document).ready(function () {
         headerNav: 'nav',
         sections: 'section'
     };
-    new Navigation($('.fullpage'));
+    var nav = new Navigation({
+        wrapper: $('.fullpage'),
+        scrollTime: 1000,
+        beforeScroll: function before(callback) {
+            console.log('Cкролл начался');
+            callback();
+        },
+        afterScroll: function afterScroll() {
+            console.log('Вы достигли желаемой секции');
+        },
+        rightNav: true,
+        topNav: true
+    });
+
 });
+// before scroll обязательно в таком формате
+// beforeScroll: function before(callback) {
+//     console.log('скролл начался'); вместо консоль лога пишете свой код
+//     callback(); коллбэк обязательно должен вызываться
+// }
