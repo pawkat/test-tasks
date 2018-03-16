@@ -47,7 +47,7 @@ $('.btn').on('click', function() {
       var title = 'Modal ' + $(slide).find('.title').html();
       var date = $(slide).find('.date').html();
       var counter = $(slide).data('slide');
-      var counterMax = $(this).parent().parent().parent().data('slides');
+      var counterMax = $(this).closest('.slider').data('slides');
       modalSlider.append(`<div class="slide"><div class="modalSlide__content"><h2 class="modalSlide__title">${title}</h2><div class="modalSlide__description">${content}</div><p class="date">${date}</p><div class="counter">${counter}/${counterMax}</div></div>${img}</div>`);
     }
   });
