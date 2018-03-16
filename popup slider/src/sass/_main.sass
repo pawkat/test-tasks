@@ -12,38 +12,39 @@ body
   align-items: center
   margin: 0 auto
   padding-top: 50px
-  max-width: 1200px
-
+  max-width: 700px
+.slider-wrapper
+  max-width: 700px
+  width: 700px
 .slider
+  display: none
   margin-bottom: 50px
   overflow: hidden
   height: 100%
+  position: relative
+  .show
+    display: block
+.slick-slide
+  display: inline-block
 .tabs
   display: flex
   justify-content: center
   align-items: center
   margin-bottom: 20px
-
 .tab
   display: flex
   justify-content: center
   align-items: center
-  width: 50px
-  height: 30px
   border: 1px solid cyan
   border-radius: 5px
 
-.tab:hover
-  background: cyan
-
-.tab:hover a
-  color: white
-
-.tab
   margin-right: 20px
-
-.tab:last-child
-  margin: 0
+  &:last-child
+    margin: 0
+  &:hover
+    background: cyan
+  &:hover a
+    color: white
 
 a
   font-family: Arial, Tahoma, sans-serif
@@ -51,6 +52,7 @@ a
   line-height: 15px
   color: cyan
   text-decoration: none
+  padding: 10px
 
 h2
   color: #000000
@@ -60,14 +62,17 @@ h2
 .slide
   border: 1px solid cyan
   border-radius: 5px
-  display: flex
+  display: flex!important
   flex-direction: column
   justify-content: center
   align-items: flex-start
+  position: relative
+  background-color: #ffffff
+  img
+    width: 100%
+    margin-bottom: 10px
 
-.slide img
-  width: 300px
-  margin-bottom: 10px
+
 
 .description
   padding-left: 10px
@@ -90,91 +95,100 @@ h2
   border: none
   cursor: pointer
 
-.arrow
+.slick-arrow
   display: block
   width: 20px
   height: 20px
+  font-size: 0
+  content: '->'
   position: absolute
-  top: 54%
+  top: calc(50% - 10px)
+  left: 2px
+  background-color: red
+  border-radius: 50%
+  z-index: 10
 
-.arrow-left
-  left: 11%
+.slick-next
+  left: calc(100% - 22px)
 
-.arrow-right
-  left: 86%
-
-.arrow i
-  font-size: 20px
 
 .active
   background: cyan
-
-.active a
-  color: white
+  a
+    color: white
 
 .modal
-  position: absolute
+  position: fixed
   height: 100%
   width: 100%
   top: 0
   left: 0
   display: none
   text-align: center
-
-
-.modal_bg
-  background: rgba(0,0,0,0.8)
+  z-index: 1000
+  img
+    max-width: 400px
+    margin: 0
+  &__bg
+    background: rgba(0,0,0,0.8)
+    position: absolute
+    z-index: 1
+    height: 100%
+    width: 100%
+  .slide
+    flex-direction: row
+    justify-content: space-between
+.close
   position: absolute
-  z-index: 1
-  height: 100%
-  width: 100%
+  display: block
+  content: ''
+  top: 10px
+  right: 10px
+  z-index: 20
+  &__item
+    display: block
+    width: 30px
+    height: 5px
+    background-color: red
+    border-radius: 5px
+    &:first-child
+      transform:  rotate(-45deg) translate(5px,8px)
+    &:last-child
+      transform:  rotate(45deg) translate(5px,-8px)
+
 
 .modalSlide-wrapper
   position: relative
   z-index: 2
   width: 700px
-  height: 500px
   margin: 0 auto
-  margin-top: 200px
+  margin-top: 50px
   overflow: hidden
-
 .modalSlide
-  width: 700px
-  height: 500px
-  display: flex
-  justify-content: space-between
-  align-items: flex-start
-  background: #ffffff
-  position: relative
-
-.modalSlide img
-  width: 300px
-  height: 500px
-
-.modalSlide-container
-  position: absolute
-  display: flex
-  width: fit-content
-
-.modal-arrows .arrow
-  z-index: 3
-  top: 40%
-
-.modal-arrows .arrow-left
-  left: 1%
-
-.modal-arrows .arrow-right
-  left: 97%
+  &__img
+    width: 300px
+  &__content
+    padding: 10px
+  &__title
+    margin-bottom: 20px
+    font-size: 25px
+    line-height: 30px
+  &__description
+    width: 100%
+    color: #000
+    font-size: 15px
+    line-height: 20px
+    margin-bottom: 20px
 
 .counter
   display: flex
   justify-content: center
   align-items: center
   color: #000000
-  width: 40px
-  height: 20px
   position: absolute
   left: calc(100% - 50px)
-  top: calc(100% - 25px)
+  top: calc(100% - 50px)
   background: cyan
   z-index: 100
+  font-size: 15px
+  padding: 10px
