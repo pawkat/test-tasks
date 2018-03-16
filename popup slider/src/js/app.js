@@ -19,7 +19,7 @@ function tabs() {
     $(this).addClass('active');
     e.preventDefault();
     slider.removeClass('show');
-    $(slider[$(this).data('slider') - 1]).addClass('show');
+    $(slider[$(this).data('slider') - 1]).addClass('show').slick('setPosition');
   });
 }
 tabs();
