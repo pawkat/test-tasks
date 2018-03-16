@@ -7,8 +7,6 @@ import 'slick-carousel';
 slider.slick({
   dots: false,
   infinite: true,
-  // autoplay: true,
-  // autoplaySpeed: 5000,
   slidesToShow: 2,
   slidesToScroll: 2
 });
@@ -27,10 +25,7 @@ function tabs() {
 tabs();
 $('.btn').on('click', function() {
   var slide = $(this).closest('.slide').data('slide') - 1;
-  // var slider = $(this).closest('.slider').data('slider') - 1;
-
   var wrapper = $('.modalSlide-wrapper');
-
 
   $('.modal').fadeIn(800);
   $('.close').click(function() {
@@ -41,13 +36,11 @@ $('.btn').on('click', function() {
     $('.modal').fadeOut(800);
     modalSlider.remove();
   });
-
-  var sli = $(this).closest('.slider').find('.slick-slide');
+  var slideWrapper = $(this).closest('.slider').find('.slick-slide');
   wrapper.append('<div class="modal__slider"></div>');
   var modalSlider = $('.modal__slider');
-  sli.each(function() {
+  slideWrapper.each(function() {
     if($(this).hasClass('slick-cloned') === false) {
-
       var slide = $(this).find('.slide');
       var img = $(slide).find('.slide__modal-img').html();
       var content = $(slide).find('.slide__modal-content').html();
@@ -55,20 +48,14 @@ $('.btn').on('click', function() {
       var date = $(slide).find('.date').html();
       var counter = $(slide).data('slide');
       var counterMax = $(this).parent().parent().parent().data('slides');
-
       modalSlider.append(`<div class="slide"><div class="modalSlide__content"><h2 class="modalSlide__title">${title}</h2><div class="modalSlide__description">${content}</div><p class="date">${date}</p><div class="counter">${counter}/${counterMax}</div></div>${img}</div>`);
     }
   });
-
   modalSlider.slick({
     dots: false,
     infinite: true,
-    // autoplay: true,
-    // autoplaySpeed: 5000,
     slidesToShow: 1,
     slidesToScroll: 1
   });
   $(modalSlider).slick('slickGoTo', slide);
-
-
 });
