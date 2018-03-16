@@ -197,20 +197,20 @@
         padding: 30px 10px 0 10px;
         padding-bottom: 50px;
       }
+      .suggestions div[role="list"] {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        flex-wrap: wrap;
+      }
       .suggestions__title {
         font-size: 18px;
         color: #900022;
         text-transform: uppercase;
         margin-bottom: 10px;
       }
-      .suggestions__content {
-        display: flex;
-        align-items: flex-start;
-        justify-content: space-around;
-        flex-wrap: wrap;
-      }
       .suggestions__item {
-        max-width: 45%;
+        max-width: 48%;
         margin-bottom: 20px;
       }
       .suggestions__post-title {
@@ -381,41 +381,22 @@
     </div>
     <div class="suggestions">
       <div class="suggestions__title">Вибір редактора</div>
-      <div class="suggestions__content">
-        <div class="suggestions__item">
-          <amp-img class="suggestions__image" src="https://img.pravda.com/images/doc/2/6/26990d4-db87f8d-kropachov-690-690x426_276x170.jpg"
-                   width="690"
-                   height="426"
-                   layout="responsive"
-                   alt="AMP"></amp-img>
-          <a href="#" class="suggestions__post-title">Вугільний куратор Віталій Кропачов: У нас все по-іншому. Ми з Донецька. Крапка</a>
-        </div>
-        <div class="suggestions__item">
-          <amp-img src="https://img.pravda.com/images/doc/2/6/26990d4-db87f8d-kropachov-690-690x426_276x170.jpg"
-                   width="690"
-                   height="426"
-                   layout="responsive"
-                   alt="AMP"></amp-img>
-          <a href="#" class="suggestions__post-title">Вугільний куратор Віталій Кропачов: У нас все по-іншому. Ми з Донецька. Крапка</a>
-        </div>
-        <div class="suggestions__item">
-          <amp-img src="https://img.pravda.com/images/doc/2/6/26990d4-db87f8d-kropachov-690-690x426_276x170.jpg"
-                   width="690"
-                   height="426"
-                   layout="responsive"
-                   alt="AMP"></amp-img>
-          <a href="#" class="suggestions__post-title">Вугільний куратор Віталій Кропачов: У нас все по-іншому. Ми з Донецька. Крапка</a>
-        </div>
-        <div class="suggestions__item">
-          <amp-img src="https://img.pravda.com/images/doc/2/6/26990d4-db87f8d-kropachov-690-690x426_276x170.jpg"
-                   width="690"
-                   height="426"
-                   layout="responsive"
-                   alt="AMP"></amp-img>
-          <a href="#" class="suggestions__post-title">Вугільний куратор Віталій Кропачов: У нас все по-іншому. Ми з Донецька. Крапка</a>
-        </div>
-
-      </div>
+      <amp-list
+              width="auto"
+              height="100"
+              layout="fixed-height"
+              src="data_suggestions.json">
+        <template type="amp-mustache">
+          <div class="suggestions__item">
+            <amp-img src={{src}}
+                     width="690"
+                     height="426"
+                     layout="responsive"
+                     alt="AMP"></amp-img>
+            <a href="#" class="suggestions__post-title"><strong>{{text}}</strong></a>
+          </div>
+        </template>
+      </amp-list>
     </div>
     <footer class="footer">
       <div class="footer__copyright">©2000-2017, Українська правда. Використання матеріалів сайту лише за умови посилання (для інтернет-видань - гіперпосилання) на «Українську правду».</div>
