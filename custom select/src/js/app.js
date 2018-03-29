@@ -37,30 +37,7 @@ $( document ).ready( function() {
 
   // Добавляем option
 
-  function addOption(html_val, el_val) {
-    // var newOption = document.createElement('option');
-    // $(newOption).html(html_val);
-    // $(newOption).attr('value', el_val);
-    $(select).append(`<option value="${el_val}">${html_val}</option>`);
-  }
-  addOption('Киев', 'Киев');
-  addOption('Львов', 'Львов');
-  addOption('Днепропетровск', 'Днепропетровск');
-  addOption('Черкассы', 'Черкассы');
-  addOption('Бровары', 'Бровары');
-  addOption('Винница', 'Винница');
-  addOption('Одесса', 'Одесса');
-  addOption('Донецк', 'Донецк');
-  addOption('Луганск', 'Луганск');
-  addOption('Харьков', 'Харьков');
-  addOption('Бровары', 'Бровары');
-  addOption('Винница', 'Винница');
-  addOption('Одесса', 'Одесса');
-  addOption('Донецк', 'Донецк');
-  addOption('Бровары', 'Бровары');
-  addOption('Винница', 'Винница');
-  addOption('Одесса', 'Одесса');
-  addOption('Донецк', 'Донецк');
+
 
   // Функция для стилизации select(создание нового div>ul>li и передача выбранных значений в изначальный select)
 
@@ -108,8 +85,9 @@ $( document ).ready( function() {
           //
           // $('select').val(chooseItem).attr('selected', 'selected');
           var chooseItemIndex = $(this).index();
-          $($('.select').children()).removeAttr('selected');
-          $($('.select').children()[chooseItemIndex]).attr('selected', 'selected');
+          console.log($(this).closest('.select').find('select'));
+          $($(this).closest('.select').find('select').children()).removeAttr('selected');
+          $($(this).closest('.select').find('select').children()[chooseItemIndex]).attr('selected', 'selected');
           selectGap.text($(this).find('span').text());
           selectList.slideUp(dur);
           selectGap.removeClass('on');

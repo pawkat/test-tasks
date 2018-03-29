@@ -39,9 +39,9 @@
 /**
  * filesize
  *
- * @copyright 2018 Jason Mulligan <jason.mulligan@avoidwork.com>
+ * @copyright 2017 Jason Mulligan <jason.mulligan@avoidwork.com>
  * @license BSD-3-Clause
- * @version 3.6.0
+ * @version 3.5.11
  */
 (function (global) {
 	var b = /^(b|B)$/,
@@ -84,7 +84,6 @@
 		    output = void 0,
 		    round = void 0,
 		    unix = void 0,
-		    separator = void 0,
 		    spacer = void 0,
 		    standard = void 0,
 		    symbols = void 0;
@@ -96,15 +95,14 @@
 		bits = descriptor.bits === true;
 		unix = descriptor.unix === true;
 		base = descriptor.base || 2;
-		round = descriptor.round !== void 0 ? descriptor.round : unix ? 1 : 2;
-		separator = descriptor.separator !== void 0 ? descriptor.separator || "" : "";
-		spacer = descriptor.spacer !== void 0 ? descriptor.spacer : unix ? "" : " ";
+		round = descriptor.round !== undefined ? descriptor.round : unix ? 1 : 2;
+		spacer = descriptor.spacer !== undefined ? descriptor.spacer : unix ? "" : " ";
 		symbols = descriptor.symbols || descriptor.suffixes || {};
 		standard = base === 2 ? descriptor.standard || "jedec" : "jedec";
 		output = descriptor.output || "string";
 		full = descriptor.fullform === true;
 		fullforms = descriptor.fullforms instanceof Array ? descriptor.fullforms : [];
-		e = descriptor.exponent !== void 0 ? descriptor.exponent : -1;
+		e = descriptor.exponent !== undefined ? descriptor.exponent : -1;
 		num = Number(arg);
 		neg = num < 0;
 		ceil = base > 2 ? 1000 : 1024;
@@ -180,10 +178,6 @@
 
 		if (full) {
 			result[1] = fullforms[e] ? fullforms[e] : fullform[standard][e] + (bits ? "bit" : "byte") + (result[0] === 1 ? "" : "s");
-		}
-
-		if (separator.length > 0) {
-			result[0] = result[0].toString().replace(".", separator);
 		}
 
 		return result.join(spacer);
@@ -2049,7 +2043,7 @@ onGroupTransform:[],onGroupTransformEnd:[],onKeyUp:[],selection:null,open:null,e
   <body>
     <div id="treemap" class="treemap"></div>
     <script>
-      window.chartData = [{"label":"app.js","weight":812702,"statSize":281147,"parsedSize":812702,"groups":[{"label":"node_modules","path":"./node_modules","weight":786925,"statSize":271751,"parsedSize":786925,"groups":[{"label":"jquery","path":"./node_modules/jquery","weight":786925,"statSize":271751,"parsedSize":786925,"groups":[{"label":"dist","path":"./node_modules/jquery/dist","weight":786925,"statSize":271751,"parsedSize":786925,"groups":[{"id":0,"label":"jquery.js","path":"./node_modules/jquery/dist/jquery.js","weight":786925,"statSize":271751,"parsedSize":786925}]}]}]},{"label":"src","path":"./src","weight":25777,"statSize":9396,"parsedSize":25777,"groups":[{"label":"js","path":"./src/js","weight":25777,"statSize":9396,"parsedSize":25777,"groups":[{"id":1,"label":"app.js","path":"./src/js/app.js","weight":25777,"statSize":9396,"parsedSize":25777}]}]}]}];
+      window.chartData = [{"label":"app.js","weight":800988,"statSize":276672,"parsedSize":800988,"groups":[{"label":"node_modules","path":"./node_modules","weight":776719,"statSize":268039,"parsedSize":776719,"groups":[{"label":"jquery","path":"./node_modules/jquery","weight":776719,"statSize":268039,"parsedSize":776719,"groups":[{"label":"dist","path":"./node_modules/jquery/dist","weight":776719,"statSize":268039,"parsedSize":776719,"groups":[{"id":0,"label":"jquery.js","path":"./node_modules/jquery/dist/jquery.js","weight":776719,"statSize":268039,"parsedSize":776719}]}]}]},{"label":"src","path":"./src","weight":24269,"statSize":8633,"parsedSize":24269,"groups":[{"label":"js","path":"./src/js","weight":24269,"statSize":8633,"parsedSize":24269,"groups":[{"id":1,"label":"app.js","path":"./src/js/app.js","weight":24269,"statSize":8633,"parsedSize":24269}]}]}]}];
     </script>
   </body>
 </html>
