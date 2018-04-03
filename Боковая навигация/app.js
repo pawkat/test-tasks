@@ -1,5 +1,4 @@
 $(document).ready(function () {
-    console.log('use this syntax for using change slide function "nav._goToSlide(5)"');
     class Navigation{
         constructor (config){
         this.config = config;
@@ -22,6 +21,7 @@ $(document).ready(function () {
             }
             this._scrollCoordinates();
             this._scroll();
+            // this._onScroll();
     }
     _createWrapper() {
         this.elem.append(`<div class="${Navigation.classes.wrapper}"></div>`);
@@ -60,17 +60,29 @@ $(document).ready(function () {
         var time = this.time;
         var scrollToSection = this.sections[sectionNumber - 1];
         var scrollTo = $(scrollToSection).position().top - $(`.${Navigation.classes.headerNav}`).outerHeight(true);
-        // console.log(this.config.beforeScroll);
         var beforeScrollFunc = this.config.beforeScroll;
         var afterScrollFunc = this.config.afterScroll;
         function scroll( before, after) {
             before(function () {
                 $('html, body').animate({scrollTop: scrollTo}, time, function () {
-                    after();
+                    if(after !== undefined) {
+                        after();
+                    }
                 });
             });
         }
-        scroll(beforeScrollFunc, afterScrollFunc);
+        if(beforeScrollFunc !== undefined && afterScrollFunc !== undefined){
+            scroll(beforeScrollFunc, afterScrollFunc);
+        }else if(beforeScrollFunc !== undefined) {
+            scroll(beforeScrollFunc, afterScrollFunc);
+        }else if(afterScrollFunc !== undefined) {
+            $('html, body').animate({scrollTop: scrollTo}, time, function () {
+                afterScrollFunc();
+            });
+        } else{
+            $('html, body').animate({scrollTop: scrollTo}, time);
+        }
+
     }
     _scrollFunc(){
         var sections = $(`.${Navigation.classes.sections}`);
@@ -98,7 +110,68 @@ $(document).ready(function () {
         rotateNav();
     }
     _scroll(){
+        var func = this._onScroll;
+        var x = this.time;
         $(window).on('scroll', this._scrollFunc);
+        $(window).on('mousewheel DOMMouseScroll', function (e) {
+            func(e);
+        });
+    }
+    _onScroll(e){
+        // function wheel(event){
+        //     var delta = 0;
+        //     if (!event) event = window.event;
+        //     if (event.wheelDelta) {
+        //         delta = event.wheelDelta/120;
+        //     } else if (event.detail) {
+        //         delta = -event.detail/3;
+        //     }
+        //     if (delta) {
+        //         if (event.preventDefault) {
+        //             event.preventDefault();
+        //         }
+        //         event.returnValue = false;
+        //         var dir = delta > 0 ? 'Up' : 'Down';
+        //         var currentPos = window.pageYOffset;
+        //         var vh = $(window).height() - $(`.${Navigation.classes.headerNav}`).outerHeight(true);
+        //         // $(window).unbind('mousewheel');
+        //         if (dir === 'Up'){
+        //             var scrollTo = currentPos - vh;
+        //             $('html, body').animate({scrollTop: scrollTo}, 200);
+        //
+        //         } else{
+        //             var scrollTo = currentPos + vh;
+        //             $('html, body').animate({scrollTop: scrollTo}, 200);
+        //         }
+        //     }
+        // }
+        // wheel();
+
+        var currentPos = window.pageYOffset;
+        var vh = $(window).height() - $(`.${Navigation.classes.headerNav}`).outerHeight(true);
+        if(typeof e.originalEvent.detail == 'number' && e.originalEvent.detail !== 0) {
+            if(e.originalEvent.detail > 0) {
+                // console.log('Down');
+                var scrollTo = currentPos + vh;
+                $('html, body').animate({scrollTop: scrollTo}, 200);
+            } else if(e.originalEvent.detail < 0){
+                // console.log('Up');
+                var scrollTo = currentPos - vh;
+                $('html, body').animate({scrollTop: scrollTo}, 200);
+            }
+        } else if (typeof e.originalEvent.wheelDelta == 'number') {
+            if(e.originalEvent.wheelDelta < 0) {
+                // console.log('Down');
+                var scrollTo = currentPos + vh;
+                $('html, body').animate({scrollTop: scrollTo}, 200);
+            } else if(e.originalEvent.wheelDelta > 0) {
+                // console.log('Up');
+                var scrollTo = currentPos - vh;
+                $('html, body').animate({scrollTop: scrollTo}, 200);
+            }
+        }
+
+
     }
     }
     Navigation.classes = {
@@ -112,13 +185,13 @@ $(document).ready(function () {
     var nav = new Navigation({
         wrapper: $('.fullpage'),
         scrollTime: 1000,
-        beforeScroll: function before(callback) {
-            console.log('Cкролл начался');
-            callback();
-        },
-        afterScroll: function afterScroll() {
-            console.log('Вы достигли желаемой секции');
-        },
+        // beforeScroll: function before(callback) {
+        //     console.log('Cкролл начался');
+        //     callback();
+        // },
+        // afterScroll: function afterScroll() {
+        //     console.log('Вы достигли желаемой секции');
+        // },
         rightNav: true,
         topNav: true
     });
