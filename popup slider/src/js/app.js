@@ -12,13 +12,13 @@ slider.slick({
 });
 
 function tabs() {
-  $(slider[0]).addClass('show');
-  $(tab[0]).addClass('active');
+  // $(slider[0]).addClass('show');
+  // $(tab[0]).addClass('active');
   tab.on('click', function(e) {
     tab.removeClass('active');
     $(this).addClass('active');
     e.preventDefault();
-    slider.removeClass('show');
+    $(this).closest('.wrapper').find('.slider').removeClass('show');
     $(slider[$(this).data('slider') - 1]).addClass('show').slick('setPosition');
   });
 }
