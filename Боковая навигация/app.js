@@ -111,63 +111,48 @@ $(document).ready(function () {
     }
     _scroll(){
         var func = this._onScroll;
-        var x = this.time;
+        var animationTime = this.time;
+        var self = this;
         $(window).on('scroll', this._scrollFunc);
         $(window).on('mousewheel DOMMouseScroll', function (e) {
-            func(e);
+            func(e, animationTime, func);
         });
     }
-    _onScroll(e){
-        // function wheel(event){
-        //     var delta = 0;
-        //     if (!event) event = window.event;
-        //     if (event.wheelDelta) {
-        //         delta = event.wheelDelta/120;
-        //     } else if (event.detail) {
-        //         delta = -event.detail/3;
-        //     }
-        //     if (delta) {
-        //         if (event.preventDefault) {
-        //             event.preventDefault();
-        //         }
-        //         event.returnValue = false;
-        //         var dir = delta > 0 ? 'Up' : 'Down';
-        //         var currentPos = window.pageYOffset;
-        //         var vh = $(window).height() - $(`.${Navigation.classes.headerNav}`).outerHeight(true);
-        //         // $(window).unbind('mousewheel');
-        //         if (dir === 'Up'){
-        //             var scrollTo = currentPos - vh;
-        //             $('html, body').animate({scrollTop: scrollTo}, 200);
-        //
-        //         } else{
-        //             var scrollTo = currentPos + vh;
-        //             $('html, body').animate({scrollTop: scrollTo}, 200);
-        //         }
-        //     }
-        // }
-        // wheel();
-
+    _onScroll(e, animationTime){
         var currentPos = window.pageYOffset;
         var vh = $(window).height() - $(`.${Navigation.classes.headerNav}`).outerHeight(true);
+        var wrapper = $(`.${Navigation.classes.headerNav}`);
         if(typeof e.originalEvent.detail == 'number' && e.originalEvent.detail !== 0) {
-            if(e.originalEvent.detail > 0) {
+            if(e.originalEvent.detail > 0 && wrapper.hasClass('animation') == false) {
                 // console.log('Down');
                 var scrollTo = currentPos + vh;
-                $('html, body').animate({scrollTop: scrollTo}, 200);
-            } else if(e.originalEvent.detail < 0){
+                wrapper.addClass('animation');
+                $('html, body').animate({scrollTop: scrollTo}, animationTime, function () {
+                    wrapper.removeClass('animation');
+                });
+            } else if(e.originalEvent.detail < 0 && wrapper.hasClass('animation') == false){
                 // console.log('Up');
                 var scrollTo = currentPos - vh;
-                $('html, body').animate({scrollTop: scrollTo}, 200);
+                wrapper.addClass('animation');
+                $('html, body').animate({scrollTop: scrollTo}, animationTime, function () {
+                    wrapper.removeClass('animation');
+                });
             }
         } else if (typeof e.originalEvent.wheelDelta == 'number') {
-            if(e.originalEvent.wheelDelta < 0) {
+            if(e.originalEvent.wheelDelta < 0 && wrapper.hasClass('animation') == false) {
                 // console.log('Down');
                 var scrollTo = currentPos + vh;
-                $('html, body').animate({scrollTop: scrollTo}, 200);
-            } else if(e.originalEvent.wheelDelta > 0) {
+                wrapper.addClass('animation');
+                $('html, body').animate({scrollTop: scrollTo}, animationTime, function () {
+                    wrapper.removeClass('animation');
+                });
+            } else if(e.originalEvent.wheelDelta > 0 && wrapper.hasClass('animation') == false) {
                 // console.log('Up');
                 var scrollTo = currentPos - vh;
-                $('html, body').animate({scrollTop: scrollTo}, 200);
+                wrapper.addClass('animation');
+                $('html, body').animate({scrollTop: scrollTo}, animationTime, function () {
+                    wrapper.removeClass('animation');
+                });
             }
         }
 
@@ -202,3 +187,8 @@ $(document).ready(function () {
 //     console.log('скролл начался'); вместо консоль лога пишете свой код
 //     callback(); коллбэк обязательно должен вызываться
 // }
+//, function () {
+//                     $(window).on('mousewheel DOMMouseScroll', function (e) {
+//                         func(e, animationTime, func)
+//                     })
+//                 }
