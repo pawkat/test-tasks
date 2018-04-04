@@ -4,254 +4,60 @@ title: Index page
 {% extends "layouts/_layout.html" %}
 
 {% block content %}
+<div class="form">
+	<form action="#">
+		<select class="select" data-placeholder="Город*">
+			<option value="Киев">Киев</option>
+			<option value="Львов">Львов</option>
+			<option value="Днепропетровск">Днепропетровск</option>
+			<option value="Черкассы">Черкассы</option>
+			<option value="Бровары">Бровары</option>
+			<option value="Винница">Винница</option>
+			<option value="Одесса">Одесса</option>
+			<option value="Донецк">Донецк</option>
+			<option value="Луганск">Луганск</option>
+			<option value="Харьков">Харьков</option>
+			<option value="Бровары">Бровары</option>
+			<option value="Винница">Винница</option>
+			<option value="Одесса">Одесса</option>
+			<option value="Донецк">Донецк</option>
+			<option value="Бровары">Бровары</option>
+			<option value="Винница">Винница</option>
+			<option value="Одесса">Одесса</option>
+			<option value="Донецк">Донецк</option>
+		</select>
+		<input type="text" placeholder="Имя*" class="form_name">
+		<div class="mandatory"><p>Обязательное для заполнения поле</p></div>
+	</form>
+</div>
 
+<div class="form">
+	<form action="#">
+		<select class="select" data-placeholder="Город*">
+			<option value="Киев">Киев</option>
+			<option value="Львов">Львов</option>
+			<option value="Днепропетровск">Днепропетровск</option>
+			<option value="Черкассы">Черкассы</option>
+			<option value="Бровары">Бровары</option>
+			<option value="Винница">Винница</option>
+			<option value="Одесса">Одесса</option>
+			<option value="Донецк">Донецк</option>
+			<option value="Луганск">Луганск</option>
+			<option value="Харьков">Харьков</option>
+			<option value="Бровары">Бровары</option>
+			<option value="Винница">Винница</option>
+			<option value="Одесса">Одесса</option>
+			<option value="Донецк">Донецк</option>
+			<option value="Бровары">Бровары</option>
+			<option value="Винница">Винница</option>
+			<option value="Одесса">Одесса</option>
+			<option value="Донецк">Донецк</option>
+		</select>
+		<input type="text" placeholder="Имя*" class="form_name">
+		<div class="mandatory"><p>Обязательное для заполнения поле</p></div>
+	</form>
+</div>
 
-
-<!--<div class="wrapper">-->
-	<!--<a href="#" class="logo"><img src="img/logo.png" alt=""></a>-->
-	<!--<section class="colors">-->
-		<!--<div class="color color_red">-->
-			<!--<div class="color_square"></div>-->
-			<!--<p>#e4022e</p>-->
-		<!--</div>-->
-		<!--<div class="color color_green">-->
-			<!--<div class="color_square"></div>-->
-			<!--<p>#8cbe22</p>-->
-		<!--</div>-->
-		<!--<div class="color color_black">-->
-			<!--<div class="color_square"></div>-->
-			<!--<p>#444444</p>-->
-		<!--</div>-->
-		<!--<div class="color color_white">-->
-			<!--<div class="color_square"></div>-->
-			<!--<p>#e4022e</p>-->
-		<!--</div>-->
-	<!--</section>-->
-	<!--<section class="typography">-->
-		<!--<h1>Типографика</h1>-->
-		<!--<h5>Основной шрифт - Roboto Regular, 15pt, #444444 </h5>-->
-		<!--<p>Дополнительные надписи - Exo 2 Regular, 12pt, #a0a0a0</p>-->
-		<!--<div class="font-size">-->
-			<!--<h4>Размер шрифта</h4>-->
-			<!--<div class="font-size_description">-->
-				<!--<p>Лампы под брендом Eurolamp, которые мы реализуем в Украине,-->
-					<!--сделаны по немецким стандартам на аутсорсинговых производственных-->
-					<!--мощностях компании Green Power Euroelectric GmbH.</p>-->
-				<!--<p>Единственные отличия от немецких ламп: "украинская" цена и адаптация-->
-					<!--для работы в условиях наших, часто неидеальных, электросетей. </p>-->
-			<!--</div>-->
-		<!--</div>-->
-		<!--<div class="marked-list">-->
-			<!--<h4>Маркированный список</h4>-->
-			<!--<div class="marked-list_desctiption">-->
-				<!--<ul>-->
-					<!--<li>На производстве заняты более 2000 человек.</li>-->
-					<!--<li>Ассортимент продукции насчитывает свыше 350 наименований.</li>-->
-					<!--<li>Вся продукция соответствует стандартам качества ISO 9001.</li>-->
-				<!--</ul>-->
-				<!--<ul>-->
-					<!--<li>Рекламная и PR-поддержка для привлечения потребителей.</li>-->
-					<!--<li>Информационная поддержка продукции: сертификаты, паспорта, каталоги,-->
-						<!--презентационные материалы, торговое оборудование и прочее. </li>-->
-					<!--<li>Проведение маркетинговых акций, направленных на увеличение продаж в-->
-						<!--розничных торговых точках (ценовые и подарочные предложения).-->
-					<!--</li>-->
-				<!--</ul>-->
-			<!--</div>-->
-
-		<!--</div>-->
-		<!--<div class="headings">-->
-			<!--<div class="headings_title"><h4>Шрифт заголовков — Exo 2 Bold, #444444</h4></div>-->
-			<!--<div class="headings_h1">-->
-				<!--<h1>H1</h1>-->
-				<!--<h1>Exo 2, 42pt, Bold, #444444</h1>-->
-				<!--<p>Интерлиньяж — 42px</p>-->
-			<!--</div>-->
-			<!--<div class="headings_h2">-->
-				<!--<h2>H2</h2>-->
-				<!--<h2>Exo 2, 36pt, Bold, #444444</h2>-->
-				<!--<p>Интерлиньяж — 40px</p>-->
-			<!--</div>-->
-			<!--<div class="headings_h3">-->
-				<!--<h3>H3</h3>-->
-				<!--<h3>Exo 2, 30pt Bold, #444444</h3>-->
-				<!--<p>Интерлиньяж — 34px</p>-->
-			<!--</div>-->
-			<!--<div class="headings_h4">-->
-				<!--<h4>H4</h4>-->
-				<!--<h4>Exo 2, 24pt Bold, #444444</h4>-->
-				<!--<p>Интерлиньяж — 30px</p>-->
-			<!--</div>-->
-			<!--<div class="headings_h5">-->
-				<!--<h5>H5</h5>-->
-				<!--<h5>Exo 2, 22pt Bold, #444444</h5>-->
-				<!--<p>Интерлиньяж — 28px</p>-->
-			<!--</div>-->
-		<!--</div>-->
-	<!--</section>-->
-	<!--<section class="links">-->
-		<!--<h1>Ссылки</h1>-->
-		<!--<div class="container">-->
-			<!--<div class="links_1">-->
-				<!--<a href="#">Гиперссылка</a>-->
-				<!--<a href="#">Гиперссылка</a>-->
-				<!--<a href="#">Гиперссылка</a>-->
-				<!--<a href="#">Гиперссылка</a>-->
-				<!--<a href="#">Гиперссылка</a>-->
-				<!--<a href="#">Гиперссылка</a>-->
-			<!--</div>-->
-			<!--<div class="links_2">-->
-				<!--<a href="#">Гиперссылка</a>-->
-				<!--<a href="#">Гиперссылка</a>-->
-				<!--<a href="#">Гиперссылка</a>-->
-				<!--<a href="#">Гиперссылка</a>-->
-				<!--<a href="#">Гиперссылка</a>-->
-				<!--<a href="#">Гиперссылка</a>-->
-			<!--</div>-->
-		<!--</div>-->
-	<!--</section>-->
-	<!--<section class="buttons-elements">-->
-		<!--<h1>Кнопки и элементы</h1>-->
-		<!--<div class="buttons-elements_content">-->
-			<!--<div class="buttons-1">-->
-				<!--<button class="btn btn_red">Узнать больше</button>-->
-				<!--<button class="btn btn_darkred">Узнать больше</button>-->
-			<!--</div>-->
-			<!--<div class="buttons-2">-->
-				<!--<button class="btn btn_grey">Посмотреть ассортимент</button>-->
-				<!--<button class="btn btn_darkgrey">Посмотреть ассортимент</button>-->
-			<!--</div>-->
-			<!--<div class="arrow-checkbox">-->
-				<!--<div class="arrow-container">-->
-					<!--<div class="arrow-top"></div>-->
-					<!--<div class="arrow-bot"></div>-->
-				<!--</div>-->
-				<!--<div class="checkbox-container">-->
-					<!--<label for="checkbox-1">-->
-						<!--<input class="checkbox" type="checkbox" name="checkbox-test" id="checkbox-1">-->
-						<!--<span class="checkbox-custom"></span>-->
-					<!--</label>-->
-					<!--<label for="checkbox-2">-->
-						<!--<input class="checkbox" type="checkbox" name="checkbox-test" id="checkbox-2">-->
-						<!--<span class="checkbox-custom"></span>-->
-					<!--</label>-->
-				<!--</div>-->
-			<!--</div>-->
-			<!--<div class="radio-buttons">-->
-				<!--<div class="arrows">-->
-					<!--<div class="arrows_1"></div>-->
-					<!--<div class="arrows_2"></div>-->
-				<!--</div>-->
-				<!--<div class="radio">-->
-					<!--<span class="radio_1 radio_active"></span>-->
-					<!--<span class="radio_2"></span>-->
-					<!--<span class="radio_3"></span>-->
-				<!--</div>-->
-			<!--</div>-->
-		<!--</div>-->
-		<!--<div class="buttons-elements_content-bottom">-->
-			<div class="form">
-				<form action="#">
-					<select class="select" data-placeholder="Город*">
-						<option value="Киев">Киев</option>
-						<option value="Львов">Львов</option>
-						<option value="Днепропетровск">Днепропетровск</option>
-						<option value="Черкассы">Черкассы</option>
-						<option value="Бровары">Бровары</option>
-						<option value="Винница">Винница</option>
-						<option value="Одесса">Одесса</option>
-						<option value="Донецк">Донецк</option>
-						<option value="Луганск">Луганск</option>
-						<option value="Харьков">Харьков</option>
-						<option value="Бровары">Бровары</option>
-						<option value="Винница">Винница</option>
-						<option value="Одесса">Одесса</option>
-						<option value="Донецк">Донецк</option>
-						<option value="Бровары">Бровары</option>
-						<option value="Винница">Винница</option>
-						<option value="Одесса">Одесса</option>
-						<option value="Донецк">Донецк</option>
-					</select>
-					<input type="text" placeholder="Имя*" class="form_name">
-					<div class="mandatory"><p>Обязательное для заполнения поле</p></div>
-				</form>
-			</div>
-			<!--<div class="buttons-elements_content-bottom_right">-->
-				<!--<div class="pages">-->
-					<!--<div class="pages_arrowleft"></div>-->
-					<!--<ul class="pages_slider">-->
-						<!--<li class="page page_1 active"><a href="#">1</a></li>-->
-						<!--<li class="page page_2"><a href="#">2</a></li>-->
-						<!--<li class="page page_3"><a href="#">3</a></li>-->
-					<!--</ul>-->
-					<!--<div class="pages_arrowright"></div>-->
-				<!--</div>-->
-				<!--<div class="select-2-language">-->
-					<!--<select name="Bt" class="select-2" data-placeholder="100 Вт">-->
-						<!--<option value="100">100 Вт</option>-->
-						<!--<option value="80">80 Вт</option>-->
-						<!--<option value="60">60 Вт</option>-->
-						<!--<option value="40">40 Вт</option>-->
-					<!--</select>-->
-					<!--<div class="language">-->
-						<!--<p class="language_ua">ua</p>-->
-						<!--<p class="language_ru active">ru</p>-->
-						<!--<p class="language_en">en</p>-->
-					<!--</div>-->
-				<!--</div>-->
-				<!--<div class="prompt">-->
-					<!--<span class="prompt">!</span>-->
-          <!--<div class="prompt-hover">-->
-            <!--<p>Описательный текст подсказки</p>-->
-          <!--</div>-->
-					<!--<span class="prompt">!</span>-->
-					<!--<div class="prompt-hover prompt-hover_second">-->
-						<!--<p>Описательный текст подсказки</p>-->
-					<!--</div>-->
-				<!--</div>-->
-			<!--</div>-->
-		<!--</div>-->
-	<!--</section>-->
-	<!--<section class="icons">-->
-		<!--<h1>Иконки</h1>-->
-		<!--<div class="icons_content">-->
-			<!--<div class="big-icons"><span></span><span></span><span></span><span></span></div>-->
-			<!--<div class="small-icons"><span></span><span></span><span></span><span></span></div>-->
-		<!--</div>-->
-	<!--</section>-->
-	<div class="form">
-		<form action="#">
-			<select class="select" data-placeholder="Город*">
-				<option value="Киев">Киев</option>
-				<option value="Львов">Львов</option>
-				<option value="Днепропетровск">Днепропетровск</option>
-				<option value="Черкассы">Черкассы</option>
-				<option value="Бровары">Бровары</option>
-				<option value="Винница">Винница</option>
-				<option value="Одесса">Одесса</option>
-				<option value="Донецк">Донецк</option>
-				<option value="Луганск">Луганск</option>
-				<option value="Харьков">Харьков</option>
-				<option value="Бровары">Бровары</option>
-				<option value="Винница">Винница</option>
-				<option value="Одесса">Одесса</option>
-				<option value="Донецк">Донецк</option>
-				<option value="Бровары">Бровары</option>
-				<option value="Винница">Винница</option>
-				<option value="Одесса">Одесса</option>
-				<option value="Донецк">Донецк</option>
-			</select>
-			<input type="text" placeholder="Имя*" class="form_name">
-			<div class="mandatory"><p>Обязательное для заполнения поле</p></div>
-		</form>
-	</div>
-
-
-
-
-<!--</div>-->
-
-<!--<select name="select-box" id="selectId" class="select"></select>-->
 
 
 
