@@ -21,7 +21,7 @@ $(document).ready(function () {
             }
             this._scrollCoordinates();
             this._scroll();
-            // this._onScroll();
+            this._scrollFunc();
     }
     _createWrapper() {
         this.elem.append(`<div class="${Navigation.classes.wrapper}"></div>`);
@@ -57,48 +57,66 @@ $(document).ready(function () {
         })
     }
     _goToSlide(sectionNumber){
+        var wrapper = this.elem;
         var time = this.time;
         var scrollToSection = this.sections[sectionNumber - 1];
-        var scrollTo = $(scrollToSection).position().top - $(`.${Navigation.classes.headerNav}`).outerHeight(true);
         var beforeScrollFunc = this.config.beforeScroll;
         var afterScrollFunc = this.config.afterScroll;
         function scroll( before, after) {
-            before(function () {
-                $('html, body').animate({scrollTop: scrollTo}, time, function () {
-                    if(after !== undefined) {
+            if(wrapper.hasClass('animation') === false && scrollToSection !== undefined){
+                var scrollTo = $(scrollToSection).position().top - $(`.${Navigation.classes.headerNav}`).outerHeight(true);
+                wrapper.addClass('animation');
+                console.log(wrapper);
+                before();
+                if(after !== undefined) {
+                    $('html, body').animate({scrollTop: scrollTo}, time, function () {
                         after();
-                    }
-                });
-            });
+                        wrapper.removeClass('animation');
+                    });
+                }else{
+                    $('html, body').animate({scrollTop: scrollTo}, time);
+                    wrapper.removeClass('animation');
+                }
+            }
         }
         if(beforeScrollFunc !== undefined && afterScrollFunc !== undefined){
             scroll(beforeScrollFunc, afterScrollFunc);
         }else if(beforeScrollFunc !== undefined) {
-            scroll(beforeScrollFunc, afterScrollFunc);
+            scroll(beforeScrollFunc);
         }else if(afterScrollFunc !== undefined) {
+            var scrollTo = $(scrollToSection).position().top - $(`.${Navigation.classes.headerNav}`).outerHeight(true);
             $('html, body').animate({scrollTop: scrollTo}, time, function () {
                 afterScrollFunc();
             });
         } else{
-            $('html, body').animate({scrollTop: scrollTo}, time);
+            if(wrapper.hasClass('animation') === false && scrollToSection !== undefined){
+                var scrollTo = $(scrollToSection).position().top - $(`.${Navigation.classes.headerNav}`).outerHeight(true);
+                wrapper.addClass('animation');
+                $('html, body').animate({scrollTop: scrollTo}, time, function () {
+                    wrapper.removeClass('animation');
+                });
+            }
         }
-
     }
     _scrollFunc(){
         var sections = $(`.${Navigation.classes.sections}`);
+        sections.removeClass('active');
         $(`.${Navigation.classes.rightNavItem}`).removeClass(`${Navigation.classes.rightNavActive}`);
         $(sections).each(function () {
             var nav = $(`.${Navigation.classes.headerNav}`);
             var scrollTo = $(this).position().top - $(`.${Navigation.classes.headerNav}`).outerHeight(true);
             var rightNavItem = $(`.${Navigation.classes.rightNavItem}`)[$(this).index() - 1];
+            var section = $(`.${Navigation.classes.sections}`)[$(this).index() - 1];
             var sectionNext = sections[$(this).index()];
             var maxTop = scrollTo + $(sectionNext).outerHeight(true) - 1;
             var sectionLast = $(sections[sections.length - 1]);
             var lastPos = sectionLast.position().top - nav.outerHeight(true);
             if (window.pageYOffset >= scrollTo & window.pageYOffset <= maxTop) {
                 $(rightNavItem).addClass(`${Navigation.classes.rightNavActive}`);
+                $(section).addClass('active');
             } else if (sectionNext === undefined & window.pageYOffset <= scrollTo & window.pageYOffset >= lastPos) {
                 $(rightNavItem).addClass(`${Navigation.classes.rightNavActive}`);
+                $(section).addClass('active');
             }
         });
         function rotateNav(){
@@ -111,48 +129,29 @@ $(document).ready(function () {
     }
     _scroll(){
         var func = this._onScroll;
-        var animationTime = this.time;
         var self = this;
         $(window).on('scroll', this._scrollFunc);
         $(window).on('mousewheel DOMMouseScroll', function (e) {
-            func(e, animationTime, func);
+            func(e, self);
         });
     }
-    _onScroll(e, animationTime){
-        var currentPos = window.pageYOffset;
-        var vh = $(window).height() - $(`.${Navigation.classes.headerNav}`).outerHeight(true);
-        var wrapper = $(`.${Navigation.classes.headerNav}`);
+    _onScroll(e, self){
+        var current = $(`.${Navigation.classes.sections}.active`).index();
         if(typeof e.originalEvent.detail == 'number' && e.originalEvent.detail !== 0) {
-            if(e.originalEvent.detail > 0 && wrapper.hasClass('animation') == false) {
+            if(e.originalEvent.detail > 0) {
                 // console.log('Down');
-                var scrollTo = currentPos + vh;
-                wrapper.addClass('animation');
-                $('html, body').animate({scrollTop: scrollTo}, animationTime, function () {
-                    wrapper.removeClass('animation');
-                });
-            } else if(e.originalEvent.detail < 0 && wrapper.hasClass('animation') == false){
+                self._goToSlide(current + 1);
+            } else if(e.originalEvent.detail < 0){
                 // console.log('Up');
-                var scrollTo = currentPos - vh;
-                wrapper.addClass('animation');
-                $('html, body').animate({scrollTop: scrollTo}, animationTime, function () {
-                    wrapper.removeClass('animation');
-                });
+                self._goToSlide(current - 1);
             }
         } else if (typeof e.originalEvent.wheelDelta == 'number') {
-            if(e.originalEvent.wheelDelta < 0 && wrapper.hasClass('animation') == false) {
+            if(e.originalEvent.wheelDelta < 0) {
                 // console.log('Down');
-                var scrollTo = currentPos + vh;
-                wrapper.addClass('animation');
-                $('html, body').animate({scrollTop: scrollTo}, animationTime, function () {
-                    wrapper.removeClass('animation');
-                });
-            } else if(e.originalEvent.wheelDelta > 0 && wrapper.hasClass('animation') == false) {
+                self._goToSlide(current + 1);
+            } else if(e.originalEvent.wheelDelta > 0) {
                 // console.log('Up');
-                var scrollTo = currentPos - vh;
-                wrapper.addClass('animation');
-                $('html, body').animate({scrollTop: scrollTo}, animationTime, function () {
-                    wrapper.removeClass('animation');
-                });
+                self._goToSlide(current - 1);
             }
         }
 
@@ -170,9 +169,8 @@ $(document).ready(function () {
     var nav = new Navigation({
         wrapper: $('.fullpage'),
         scrollTime: 1000,
-        // beforeScroll: function before(callback) {
+        // beforeScroll: function before() {
         //     console.log('Cкролл начался');
-        //     callback();
         // },
         // afterScroll: function afterScroll() {
         //     console.log('Вы достигли желаемой секции');
@@ -180,7 +178,6 @@ $(document).ready(function () {
         rightNav: true,
         topNav: true
     });
-
 });
 // before scroll обязательно в таком формате
 // beforeScroll: function before(callback) {
