@@ -22,6 +22,7 @@ $(document).ready(function () {
             this._scrollCoordinates();
             this._scroll();
             this._scrollFunc();
+            this._resize();
     }
     _createWrapper() {
         this.elem.append(`<div class="${Navigation.classes.wrapper}"></div>`);
@@ -154,8 +155,26 @@ $(document).ready(function () {
                 self._goToSlide(current - 1);
             }
         }
+    }
+    _resize(){
+            var self = this;
 
+            $(window).on('resize', function () {
+                setTimeout(function () {
+                    var activeSection = $(`.${Navigation.classes.sections}.active`).index();
+                    self._goToSlide(activeSection)
+                }, 500)
+            })
 
+        // var first =true;
+        // window.onresize = function(){
+        //     if(!first){ window.onresize = null; return; }
+        //     if(first) {first = false;
+        //         //Тут наши коды...
+        //         var activeSection = $(`.${Navigation.classes.sections}.active`).index();
+        //         self._goToSlide(activeSection)
+        //     }
+        // }
     }
     }
     Navigation.classes = {
