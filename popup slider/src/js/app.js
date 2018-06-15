@@ -15,9 +15,10 @@ function tabs() {
   // $(slider[0]).addClass('show');
   // $(tab[0]).addClass('active');
   tab.on('click', function(e) {
-    tab.removeClass('active');
-    $(this).addClass('active');
     e.preventDefault();
+    $(this).closest('.tabs').find('.tab').removeClass('active');
+    // tab.removeClass('active');
+    $(this).addClass('active');
     $(this).closest('.wrapper').find('.slider').removeClass('show');
     $(slider[$(this).data('slider') - 1]).addClass('show').slick('setPosition');
   });
@@ -44,10 +45,10 @@ $('.btn').on('click', function() {
       var slide = $(this).find('.slide');
       var img = $(slide).find('.slide__modal-img').html();
       var content = $(slide).find('.slide__modal-content').html();
-      var title = 'Modal ' + $(slide).find('.title').html();
+      var title = $(slide).find('.slide__modal-title').html();
       var date = $(slide).find('.date').html();
       var counter = $(slide).data('slide');
-      var counterMax = $(this).closest('.slider').data('slides');
+      var counterMax = $(this).closest('.slider').find('.slick-slide:not(.slick-cloned)').length;
       modalSlider.append(`<div class="slide"><div class="modalSlide__content"><h2 class="modalSlide__title">${title}</h2><div class="modalSlide__description">${content}</div><p class="date">${date}</p><div class="counter">${counter}/${counterMax}</div></div>${img}</div>`);
     }
   });
