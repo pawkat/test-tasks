@@ -63,20 +63,32 @@ $(document).ready(function () {
         var scrollToSection = this.sections[sectionNumber - 1];
         var beforeScrollFunc = this.config.beforeScroll;
         var afterScrollFunc = this.config.afterScroll;
+        var timer;
         function scroll( before, after) {
-            if(wrapper.hasClass('animation') === false && scrollToSection !== undefined){
+            if(!wrapper.hasClass('animation') && scrollToSection){
                 var scrollTo = $(scrollToSection).position().top - $(`.${Navigation.classes.headerNav}`).outerHeight(true);
                 wrapper.addClass('animation');
-                console.log(wrapper);
-                before();
-                if(after !== undefined) {
+                var beforeTimer;
+                if (before) {
+                    clearTimeout(beforeTimer);
+                    beforeTimer = setTimeout(function () {
+                        before();
+                    }, 10);
+                }
+                if(after) {
+                    var afterTimer;
                     $('html, body').animate({scrollTop: scrollTo}, time, function () {
-                        after();
-                        wrapper.removeClass('animation');
+                        clearTimeout(afterTimer);
+                        afterTimer = setTimeout(function () {
+                            after();
+                            wrapper.removeClass('animation');
+                        }, 10);
+
                     });
                 }else{
-                    $('html, body').animate({scrollTop: scrollTo}, time);
-                    wrapper.removeClass('animation');
+                    $('html, body').animate({scrollTop: scrollTo}, time, function () {
+                        wrapper.removeClass('animation');
+                    });
                 }
             }
         }
@@ -84,11 +96,12 @@ $(document).ready(function () {
             scroll(beforeScrollFunc, afterScrollFunc);
         }else if(beforeScrollFunc !== undefined) {
             scroll(beforeScrollFunc);
-        }else if(afterScrollFunc !== undefined) {
-            var scrollTo = $(scrollToSection).position().top - $(`.${Navigation.classes.headerNav}`).outerHeight(true);
-            $('html, body').animate({scrollTop: scrollTo}, time, function () {
-                afterScrollFunc();
-            });
+        }else if(!beforeScrollFunc && afterScrollFunc !== undefined) {
+            scroll(null, afterScrollFunc);
+            // var scrollTo = $(scrollToSection).position().top - $(`.${Navigation.classes.headerNav}`).outerHeight(true);
+            // $('html, body').animate({scrollTop: scrollTo}, time, function () {
+            //     afterScrollFunc();
+            // });
         } else{
             if(wrapper.hasClass('animation') === false && scrollToSection !== undefined){
                 var scrollTo = $(scrollToSection).position().top - $(`.${Navigation.classes.headerNav}`).outerHeight(true);
@@ -139,6 +152,7 @@ $(document).ready(function () {
     _onScroll(e, self){
         var current = $(`.${Navigation.classes.sections}.active`).index();
         if(typeof e.originalEvent.detail == 'number' && e.originalEvent.detail !== 0) {
+            var timer;
             if(e.originalEvent.detail > 0) {
                 // console.log('Down');
                 self._goToSlide(current + 1);
@@ -147,6 +161,7 @@ $(document).ready(function () {
                 self._goToSlide(current - 1);
             }
         } else if (typeof e.originalEvent.wheelDelta == 'number') {
+            var timer;
             if(e.originalEvent.wheelDelta < 0) {
                 // console.log('Down');
                 self._goToSlide(current + 1);
@@ -165,16 +180,6 @@ $(document).ready(function () {
                     self._goToSlide(activeSection)
                 }, 500)
             })
-
-        // var first =true;
-        // window.onresize = function(){
-        //     if(!first){ window.onresize = null; return; }
-        //     if(first) {first = false;
-        //         //Тут наши коды...
-        //         var activeSection = $(`.${Navigation.classes.sections}.active`).index();
-        //         self._goToSlide(activeSection)
-        //     }
-        // }
     }
     }
     Navigation.classes = {
@@ -188,9 +193,9 @@ $(document).ready(function () {
     var nav = new Navigation({
         wrapper: $('.fullpage'),
         scrollTime: 1000,
-        // beforeScroll: function before() {
-        //     console.log('Cкролл начался');
-        // },
+        beforeScroll: function before() {
+            console.log('Cкролл начался');
+        },
         // afterScroll: function afterScroll() {
         //     console.log('Вы достигли желаемой секции');
         // },
@@ -198,13 +203,3 @@ $(document).ready(function () {
         topNav: true
     });
 });
-// before scroll обязательно в таком формате
-// beforeScroll: function before(callback) {
-//     console.log('скролл начался'); вместо консоль лога пишете свой код
-//     callback(); коллбэк обязательно должен вызываться
-// }
-//, function () {
-//                     $(window).on('mousewheel DOMMouseScroll', function (e) {
-//                         func(e, animationTime, func)
-//                     })
-//                 }
